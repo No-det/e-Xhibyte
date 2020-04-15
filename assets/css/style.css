@@ -1,0 +1,427 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/*Navigation Bar */
+
+.nav-bar {
+    display: flex;
+    height: 10vh;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: rgb(73, 73, 73);
+}
+
+.logo i {
+    padding-top: -20px;
+}
+
+.signup {
+    padding: 10px;
+    font-size: 16px;
+    color: rgb(248, 87, 235);
+    border: 1px solid rgb(248, 87, 235);
+    background-color: white;
+    font-weight: 500;
+    min-width: 75px;
+    min-height: 43px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* .signup:hover {
+    color: white;
+    border: 2px solid rgb(248, 87, 235);
+    background-color: rgb(248, 87, 235);
+} */
+
+.login {
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    border: 2px solid rgb(248, 87, 235);
+    background-color: rgb(248, 87, 235);
+    font-weight: 500;
+    min-width: 75px;
+    min-height: 43px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.signup a  {
+    text-decoration: none;
+    color: rgb(248, 87, 235);
+}
+
+
+.login a  {
+    text-decoration: none;
+    color: white;
+}
+
+/* .login:hover {
+    color: rgb(248, 87, 235);
+    border: 1px solid rgb(248, 87, 235);
+    background-color: white;
+} */
+
+/* Content */
+
+.content {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(71, 71, 71);
+}
+
+.home-image {
+    flex-grow: 1;
+}
+
+.home-image img {
+    flex-grow: 1;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+}
+
+
+.description {
+    flex-grow: 1;
+    font-size: 18px;
+    color: white;
+}
+
+.description li {
+    list-style: none;
+}
+
+.description a {
+    color: white;
+}
+
+
+/* Footer */
+
+.footer {
+    padding: 20px;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+/* Login Page */
+
+.login-background {
+    background: url(../img/loginbackground.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    filter: brightness(60%);
+    z-index: -2;
+}
+
+.login-box {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 520px;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: white;
+    padding: 50px 50px;
+}
+
+.login-header h1 {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.login-info input {
+    width: 92%;
+    margin-bottom: 20px;
+}
+
+.login-info p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.login-info input[type="text"], input[type="password"] {
+    border: none;
+    border-bottom: 1px solid black;
+    height: 40px;
+    outline: none;
+    font-size: 16px;
+}
+
+.login-info input[type="submit"] {
+    border: none;
+    width: 100%;
+    outline: none;
+    height: 40px;
+    background-color: rgb(248, 87, 235);
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-info input[type="submit"]:hover {
+    background-color: white;
+    color: rgb(248, 87, 235);
+    border: 1px solid rgb(248, 87, 235);
+}
+
+.login-info a {
+    text-decoration: none;
+    font-size: 12px;
+    color: gray;
+}
+
+.login-info a:hover {
+    text-decoration: none;
+    font-size: 12px;
+    color: rgb(248, 87, 235);
+}
+
+.login-info i {
+    color: gray;
+    cursor: pointer;
+}
+
+/* Signup Page */
+
+.signup-box {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 520px;
+    height: 670px;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: white;
+    padding: 50px 50px;
+}
+
+.signup-info input {
+    width: 94%;
+    margin-bottom: 20px;
+}
+
+.signup-info p {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.signup-info input[type="text"], input[type="password"] {
+    border: none;
+    border-bottom: 1px solid black;
+    height: 40px;
+    outline: none;
+    font-size: 14px;
+}
+
+.signup-info input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: rgb(248, 87, 235);
+    color: white;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.signup-info input[type="submit"]:hover {
+    background-color: white;
+    color: rgb(248, 87, 235);
+    border: 1px solid rgb(248, 87, 235);
+}
+
+.signup-info a {
+    text-decoration: none;
+    font-size: 12px;
+    color: gray;
+}
+
+.signup-info a:hover {
+    text-decoration: none;
+    font-size: 12px;
+    color: rgb(248, 87, 235);
+}
+
+.input-container i {
+    color: gray;
+    cursor: pointer;
+}
+
+
+/* OTP Page */
+
+.otp-background {
+    background: url(../img/loginbackground.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    filter: brightness(60%);
+    z-index: -2;
+}
+
+.otp-box {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 520px;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: white;
+    padding: 50px 50px;
+}
+
+.otp-info input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.otp-header h1 {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.otp-info p {
+    margin-bottom: 20px;
+}
+
+.otp-info form p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.otp-info input[type="text"]{
+    border: none;
+    border-bottom: 1px solid black;
+    height: 40px;
+    outline: none;
+    font-size: 14px;
+}
+
+.otp-info input[type="submit"]:hover {
+    background-color: white;
+    color: rgb(248, 87, 235);
+    border: 1px solid rgb(248, 87, 235);
+}
+
+.otp-info input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: rgb(248, 87, 235);
+    color: white;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Password Reset Page */
+
+.passreset-background {
+    background: url(../img/loginbackground.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    filter: brightness(60%);
+    z-index: -2;
+}
+
+.passreset-box {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 520px;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: white;
+    padding: 50px 50px;
+}
+
+.passreset-info input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.passreset-header h1 {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.passreset-info p {
+    margin-bottom: 20px;
+}
+
+.passreset-info form p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.passreset-info input[type="password"]{
+    border: none;
+    border-bottom: 1px solid black;
+    height: 40px;
+    outline: none;
+    font-size: 14px;
+}
+
+.passreset-info input[type="submit"]:hover {
+    background-color: white;
+    color: rgb(248, 87, 235);
+    border: 1px solid rgb(248, 87, 235);
+}
+
+.passreset-info input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: rgb(248, 87, 235);
+    color: white;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.passreset-info a {
+    text-decoration: none;
+    font-size: 12px;
+    color: gray;
+}
+
+.passreset-info a:hover {
+    text-decoration: none;
+    font-size: 12px;
+    color: rgb(248, 87, 235);
+}

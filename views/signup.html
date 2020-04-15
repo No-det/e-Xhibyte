@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>e-Xhibyte | Home</title>
+</head>
+<body>
+    <div class="login-background"></div>
+    <div class="signup-box">
+        <div class="login-header">
+            <h1>Sign Up</h1>
+        </div>
+        <br/>
+        <div class="signup-info">
+            <form action="#">
+                <div class="input-container">
+                    <p>E-mail Id:</p>
+                    <input type="text" name="username" placeholder="Enter Email-Id">    
+                </div>
+                <div class="input-container">
+                    <p>Username:</p>
+                    <input type="text" name="username" placeholder="Enter Username">                
+                </div>
+                <div class="input-container">    
+                    <p>Password:</p> 
+                    <input type="password" name="password" placeholder="Enter Password" id="pass">
+                    <i id="ic1" class="fas far fa-eye-slash" onclick="pass()"></i>
+                </div>  
+                <div class="input-container">    
+                    <p>Confirm Password:</p> 
+                    <input type="password" name="cpassword" placeholder="Confirm Password" id="cpass">
+                    <i id="ic2" class="fas far fa-eye-slash" onclick="cpass()"></i>
+                </div>
+                <input type="submit" name="submit" value="Signup" style="width: 100%;">
+                <a href="./login.html">Already Have an Account?</a>
+            </form>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/d2a549144d.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
