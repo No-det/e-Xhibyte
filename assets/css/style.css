@@ -396,6 +396,14 @@ body {
     font-size: 14px;
 }
 
+.passreset-info input[type="text"]{
+    border: none;
+    border-bottom: 1px solid black;
+    height: 40px;
+    outline: none;
+    font-size: 14px;
+}
+
 .passreset-info input[type="submit"]:hover {
     background-color: white;
     color: rgb(248, 87, 235);

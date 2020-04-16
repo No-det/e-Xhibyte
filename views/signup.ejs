@@ -15,10 +15,14 @@
         </div>
         <br/>
         <div class="signup-info">
-            <form action="#">
+            <form action="/register" method="POST">
                 <div class="input-container">
                     <p>E-mail Id:</p>
-                    <input type="text" name="username" placeholder="Enter Email-Id">    
+                    <input type="text" name="mail" placeholder="Enter Email-Id">    
+                </div>
+                <div class="input-container">
+                    <p>Name:</p>
+                    <input type="text" name="name" placeholder="Enter Name">                
                 </div>
                 <div class="input-container">
                     <p>Username:</p>
@@ -31,12 +35,12 @@
                 </div>  
                 <div class="input-container">    
                     <p>Confirm Password:</p> 
-                    <input type="password" name="cpassword" placeholder="Confirm Password" id="cpass">
+                    <input type="password" name="confpassword" placeholder="Confirm Password" id="cpass">
                     <i id="ic2" class="fas far fa-eye-slash" onclick="cpass()"></i>
                 </div>
-                <input type="submit" name="submit" value="Signup" style="width: 100%;">
-                <a href="./login.html">Already Have an Account?</a>
+                <input type="submit" value="Signup" style="width: 100%;">
             </form>
+            <a href="/login">Already Have an Account?</a>
         </div>
     </div>
     <script src="https://kit.fontawesome.com/d2a549144d.js" crossorigin="anonymous"></script>
