@@ -628,7 +628,6 @@ input[type="password"] {
   border-radius: 10px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
   font-size: 18px;
-
 }
 
 .feed-item img {
@@ -737,4 +736,68 @@ input[type="password"] {
   padding: 20px 0;
   text-align: left;
   color: rgb(80, 80, 80);
+}
+
+/* Profile Edit Page */
+
+.hero-detail p input {
+  border: none;
+  border-bottom: 1px solid black;
+  height: 40px;
+  outline: none;
+  font-size: 14px;
+}
+
+.hero-detail p i {
+  color: gray;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+}
+
+.button-wrapper-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+}
+
+.button-wrapper-edit input[type="submit"] {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+.edit-password a {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(0, 212, 0);
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-password a:hover {
+  color: rgb(0, 212, 0);
+  background-color: white;
+  border: 1px solid rgb(0, 212, 0);
+}
+
+.save-changes {
+  padding: 10px 20px;
+  color: white;
+  margin-left: 20px;
+  background-color: rgb(243, 73, 243);
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+
+.save-changes:hover {
+  color: rgb(243, 73, 243);
+  background-color: white;
+  border: 1px solid rgb(243, 73, 243);
 }

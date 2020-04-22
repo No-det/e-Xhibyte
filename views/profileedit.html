@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <title>e-Xhibyte | Profile Edit</title>
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <h1>e-Xhibyte</h1>
+        <h6><i>Host your dream from your device.</i></h6>
+      </div>
+      <div class="nav">
+        <a href="/home">Home</a>
+        <span>|</span>
+        <a href="/logout">Log Out</a>
+      </div>
+    </div>
+    <div class="hero-wrapper">
+      <h1>Profile</h1>
+      <div class="hero-container">
+        <div class="hero-img">
+          <img src="../assets/img/Nandanunni Pic.jpg" alt="" />
+        </div>
+        <div class="hero-name">
+          <h2><strong><%= user.name %></strong></h2>
+        </div>
+        <div class="hero-details">
+          <h3>Details</h3>
+          <form action="#">
+            <div class="hero-detail">
+              <p>User Name:</p>
+              <p><input type="text" value="AS Nandanunni" /></p>
+            </div>
+            <div class="hero-detail">
+              <p>Phone Number:</p>
+              <p><input type="text" value="(888) 888 8888" /></p>
+            </div>
+            <div class="hero-detail">
+              <p>Email Id:</p>
+              <p><input type="text" value="****unni@gmail.com" /></p>
+            </div>
+            <div class="button-wrapper-edit">
+              <div class="edit-password">
+                <a href="#"> Edit Password</a>
+              </div>
+              <input class="save-changes" type="submit" value="Save Changes" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p id="copyright">Copyright &copy; 2020 | Anoroc</p>
+    </div>
+    <script src="../assets/js/app.js"></script>
+    <script
+      src="https://kit.fontawesome.com/d2a549144d.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

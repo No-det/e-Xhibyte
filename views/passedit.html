@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <title>e-Xhibyte | Password Change</title>
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <h1>e-Xhibyte</h1>
+        <h6><i>Host your dream from your device.</i></h6>
+      </div>
+      <div class="nav">
+        <a href="/home">Home</a>
+        <span>|</span>
+        <a href="/logout">Log Out</a>
+      </div>
+    </div>
+    <div class="hero-wrapper">
+      <h1>Profile</h1>
+      <div class="hero-container">
+        <div class="hero-details">
+          <h3>Password Change:</h3>
+          <form action="">
+            <div class="hero-detail">
+              <p>Password:</p>
+              <p style="display: flex;">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter New Password"
+                  id="opass"
+                />
+                <i
+                  id="ic6"
+                  class="fas far fa-eye-slash"
+                  onclick="currentPass()"
+                ></i>
+              </p>
+            </div>
+            <div class="hero-detail">
+              <p>New Password:</p>
+              <p style="display: flex;">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter New Password"
+                  id="pass"
+                />
+                <i
+                  id="ic4"
+                  class="fas far fa-eye-slash"
+                  onclick="changePass()"
+                ></i>
+              </p>
+            </div>
+            <div class="hero-detail">
+              <p>Confirm Password:</p>
+              <p style="display: flex;">
+                <input
+                  type="password"
+                  name="confpassword"
+                  placeholder="Confirm Password"
+                  id="cpass"
+                />
+                <i
+                  id="ic5"
+                  class="fas far fa-eye-slash"
+                  onclick="confirmChangePass()"
+                ></i>
+              </p>
+            </div>
+            <div class="button-wrapper-edit">
+              <input class="save-changes" type="submit" value="Save Password" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p id="copyright">Copyright &copy; 2020 | Anoroc</p>
+    </div>
+
+    <script src="../assets/js/app.js"></script>
+    <script
+      src="https://kit.fontawesome.com/d2a549144d.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
