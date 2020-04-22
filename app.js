@@ -45,13 +45,21 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+//Route Path
+const adminRoute = require('./routes/admin.route');
+server.use('/polisaanam', middleWares.hasAdminPrivs, adminRoute);
+
 authController(server);
 
 
 //Static pages
-server.get('/' , (req,res) => {
-    res.render('index')
+server.get('/' ,middleWares.isLoggedIn, (req,res) => {
+    res.render('home')
 });
+
+server.get('/' , (req,res) => {
+    res.render('/index');
+})
 
 server.get('/home/' , middleWares.isLoggedIn , (req,res) => {
     res.render('home',{user:req.user})
@@ -68,6 +76,8 @@ server.get('/exhibitions', (req,res) => {
 server.get('/bookfair',middleWares.isLoggedIn , (req,res) => {
     res.render('bookfair');
 })
+
+
 
 
 
