@@ -2,6 +2,7 @@
 const middlewareObj = {}
 
 middlewareObj.isLoggedIn = (req,res,next) => {
+    if(req.user)
     if(req.user.isActive) {
         return next();
     }

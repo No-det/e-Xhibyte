@@ -37,7 +37,7 @@ module.exports = server => {
                 }
                 console.log(user.username + " Logged in.");
                 req.flash("success", "Good to see you again, " + user.username);
-               res.send('User Log-In sucessfull')
+               res.redirect('/home/');
             });
         })(req, res, next);
     });
@@ -61,6 +61,7 @@ module.exports = server => {
             name : req.body.name,
             email : req.body.mail,
             username : req.body.username,
+            phone : req.body.phone,
             registeringToken : token,
         })
 
@@ -112,7 +113,7 @@ module.exports = server => {
                         return next(err)
                     }
                     console.log(`Email sent to ${req.body.name}`);
-                    return res.redirect('/login');
+                    return res.render('login',{message : 'Kindly Check your mail for the confirmation link'});
                 });
         }
       

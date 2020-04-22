@@ -5,9 +5,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
 const bodyParser = require("body-parser");
-const flash = require("connect-flash");
+const flash = require("req-flash");
 const expressSession = require("express-session");
 const authController  = require('./controllers/auth.controller');
+const middleWares = require('./middlewares/middlewares');
+var cookieParser = require('cookie-parser');
 
 const User = require('./models/user.model');
 
@@ -34,6 +36,7 @@ server.use(bodyParser.urlencoded({extended : false}));
 server.use(bodyParser.json());
 server.use(passport.initialize());
 server.use(passport.session());
+server.use(cookieParser());
 server.use(flash());
 
 //Setting up Passport 
@@ -44,9 +47,29 @@ passport.deserializeUser(User.deserializeUser());
 
 authController(server);
 
+
+//Static pages
 server.get('/' , (req,res) => {
     res.render('index')
 });
+
+server.get('/home/' , middleWares.isLoggedIn , (req,res) => {
+    res.render('home',{user:req.user})
+})
+
+server.get('/profile',middleWares.isLoggedIn , (req,res) => {
+    res.render('profile',{user:req.user});
+})
+
+server.get('/exhibitions', (req,res) => {
+    res.render('exhibition');
+})
+
+server.get('/bookfair',middleWares.isLoggedIn , (req,res) => {
+    res.render('bookfair');
+})
+
+
 
 const PORT = process.env.PORT || 8001;
 

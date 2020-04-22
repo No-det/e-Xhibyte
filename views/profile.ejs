@@ -17,9 +17,9 @@
         <h6><i>Host your dream from your device.</i></h6>
       </div>
       <div class="nav">
-        <a href="./profile.html">Profile</a>
+        <a href="/home">Home</a>
         <span>|</span>
-        <a href="./feedlist.html">News Feed</a>
+        <a href="/logout">Log Out</a>
       </div>
     </div>
     <div class="hero-wrapper">
@@ -29,21 +29,25 @@
           <img src="../assets/img/Nandanunni Pic.jpg" alt="" />
         </div>
         <div class="hero-name">
-          <h2><strong>A S Nandanunni</strong></h2>
+          <h2><strong><%= user.name %></strong></h2>
         </div>
         <div class="hero-details">
           <h3>Details</h3>
+          <div class="hero-detail">
+            <p>User Name:</p>
+            <p><%= user.username %></p>
+          </div>
           <div class="hero-detail">
             <p>Tag:</p>
             <p>Artist</p>
           </div>
           <div class="hero-detail">
             <p>Phone Number:</p>
-            <p>(888) 888 8888</p>
+            <p><%= user.phone %></p>
           </div>
           <div class="hero-detail">
             <p>Email Id:</p>
-            <p>*****unni@gmail.com</p>
+            <p><%= user.email %></p>
           </div>
           <div class="hero-detail">
             <p>Password:</p>

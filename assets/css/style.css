@@ -213,7 +213,7 @@ input[type="password"] {
   top: 50%;
   left: 50%;
   width: 520px;
-  height: 670px;
+  height: 800px;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   background-color: white;
@@ -609,6 +609,7 @@ input[type="password"] {
 
 .feed-items {
   padding: 20px;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -623,10 +624,11 @@ input[type="password"] {
   color: white;
   position: relative;
   padding: 20px;
-  margin: 10px;
-  border-radius: 2px;
+  margin: 20px;
+  border-radius: 10px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
   font-size: 18px;
+
 }
 
 .feed-item img {
