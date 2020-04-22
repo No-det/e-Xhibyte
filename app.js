@@ -47,26 +47,26 @@ passport.deserializeUser(User.deserializeUser());
 
 //Route Path
 const adminRoute = require('./routes/admin.route');
+const userRoute = require("./routes/user.route");
+
+//Routing
 server.use('/polisaanam', middleWares.hasAdminPrivs, adminRoute);
+server.use('/profile', middleWares.isLoggedIn , userRoute);
 
 authController(server);
 
 
 //Static pages
-server.get('/' ,middleWares.isLoggedIn, (req,res) => {
-    res.render('home')
-});
 
 server.get('/' , (req,res) => {
-    res.render('/index');
+    if(req.user)
+    return res.render('home');
+
+    return res.render('index')
 })
 
-server.get('/home/' , middleWares.isLoggedIn , (req,res) => {
+server.get('/home' , middleWares.isLoggedIn , (req,res) => {
     res.render('home',{user:req.user})
-})
-
-server.get('/profile',middleWares.isLoggedIn , (req,res) => {
-    res.render('profile',{user:req.user});
 })
 
 server.get('/exhibitions', (req,res) => {
@@ -81,6 +81,6 @@ server.get('/bookfair',middleWares.isLoggedIn , (req,res) => {
 
 
 
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => console.log(`Listening to PORT: ${PORT}`));

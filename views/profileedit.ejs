@@ -36,19 +36,19 @@
           <form action="#">
             <div class="hero-detail">
               <p>User Name:</p>
-              <p><input type="text" value="AS Nandanunni" /></p>
+              <p><input type="text" value="<%= user.username %>" /></p>
             </div>
             <div class="hero-detail">
               <p>Phone Number:</p>
-              <p><input type="text" value="(888) 888 8888" /></p>
+              <p><input type="text" value="<%= user.phone %>" /></p>
             </div>
             <div class="hero-detail">
               <p>Email Id:</p>
-              <p><input type="text" value="****unni@gmail.com" /></p>
+              <p><input type="text" value="<%= user.email %>" /></p>
             </div>
             <div class="button-wrapper-edit">
               <div class="edit-password">
-                <a href="#"> Edit Password</a>
+                <a href="/profile/editPass"> Edit Password</a>
               </div>
               <input class="save-changes" type="submit" value="Save Changes" />
             </div>
