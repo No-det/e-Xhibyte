@@ -33,22 +33,22 @@
         </div>
         <div class="hero-details">
           <h3>Details</h3>
-          <form action="#">
+          <form action="/profile/edit" method="POST">
             <div class="hero-detail">
               <p>User Name:</p>
-              <p><input type="text" value="<%= user.username %>" /></p>
+              <p><input type="text" value="<%= user.username %>" name="name" /></p>
             </div>
             <div class="hero-detail">
               <p>Phone Number:</p>
-              <p><input type="text" value="<%= user.phone %>" /></p>
+              <p><input type="text" value="<%= user.phone %>" name="phone"/></p>
             </div>
             <div class="hero-detail">
               <p>Email Id:</p>
-              <p><input type="text" value="<%= user.email %>" /></p>
+              <p><input type="text" value="<%= user.email %>" name="email"/></p>
             </div>
             <div class="button-wrapper-edit">
               <div class="edit-password">
-                <a href="/profile/editPass"> Edit Password</a>
+                <a href="/forget"> Edit Password</a>
               </div>
               <input class="save-changes" type="submit" value="Save Changes" />
             </div>

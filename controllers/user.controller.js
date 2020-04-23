@@ -8,6 +8,15 @@ exports.showEditProfile = (req,res) => {
     res.render('profileedit', {user:req.user});
 }
 
-exports.showEditPassword = (req,res) => {
-    res.render('passedit',{user:req.user});
+exports.editProfile = (req,res,next) => {
+    User.findByIdAndUpdate({_id : req.user.id} , {username :req.body.name , phone :req.body.phone ,
+         email : req.body.email} ,err => {
+        if(err) {
+            console.log('error updating details');
+            return next(err);
+        }
+        console.log('User details Updated');
+        return res.redirect('/profile');
+    })
+
 }
