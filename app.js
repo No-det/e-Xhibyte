@@ -22,8 +22,15 @@ server.use("/assets/css", express.static(__dirname + "/assets/css"));
 server.use("/assets/img", express.static(__dirname + "/assets/img"));
 server.use("/assets/js", express.static(__dirname + "/assets/js"));
 
-//Connecting to the database
-mongoose.connect("mongodb://localhost/e-Xhibyte");
+//connect to mongo db
+mongoose.connect(
+    "mongodb+srv://ajal:ajal123@e-xhibyte-3krkl.mongodb.net/test?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    }
+  );
 
 //Using resources
 server.use(expressSession({
