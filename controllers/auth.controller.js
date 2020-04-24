@@ -92,8 +92,8 @@ module.exports = server => {
                 let smtpTransport = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {
-                        user: 'visitthestars0010@gmail.com',
-                        pass: 'pass@882836'
+                        user: 'hfh6775@gmail.com',
+                        pass: 'hfh@2020'
                     }
                 });
                 let mailOptions = {
@@ -169,8 +169,8 @@ module.exports = server => {
                 let smtpTransport = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {
-                        user: 'visitthestars0010@gmail.com',
-                        pass: 'pass@882836'
+                        user: 'hfh6775@gmail.com',
+                        pass: 'hfh@2020'
                     }
                 });
                 let mailOptions = {
@@ -253,8 +253,8 @@ module.exports = server => {
                 let smtpTransport = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {
-                        user: 'visitthestars0010@gmail.com',
-                        pass: 'pass@882836'
+                        user: 'hfh6775@gmail.com',
+                        pass: 'hfh@2020'
                     }
                 });
                 let mailOptions = {
