@@ -9,8 +9,11 @@ const flash = require("req-flash");
 const expressSession = require("express-session");
 const authController  = require('./controllers/auth.controller');
 const middleWares = require('./middlewares/middlewares');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
+const multer = require('multer');
 
+
+const Test = require('./models/test.model');
 const User = require('./models/user.model');
 
 //Creating server
@@ -85,7 +88,34 @@ server.get('/bookfair',middleWares.isLoggedIn , (req,res) => {
 })
 
 
+//Testing to upload image
+//Path to save files
+const upload = multer({dest : __dirname+'/uploads/profileImages'});
 
+server.get('/upload' ,(req,res) => {
+    res.render('testUpload');
+    // Test.find(images => res.sendFile(images.toString('base64')));
+
+})
+
+server.post('/upload',upload.single('photo'),(req,res,next) => {
+    console.log(req.file)
+    // if(req.file) {
+    //     let newTest = new Test;
+    //     newTest.img.data = req.file;
+    //     newTest.img.contentType = 'image/png'
+    //     newTest.save(err => {
+    //         if(err)
+    //         console.log(err);
+
+    //         console.log('Image saved');
+    //     })
+    // }
+    // else {
+    //     console.log('No file uploaded');
+    //     return next(err);
+    // }
+})
 
 
 const PORT = process.env.PORT || 5000;
