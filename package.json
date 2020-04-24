@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon App.js",
+    "start": "node App.js
+    ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +29,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "mongoose": "^5.9.7",
+    "multer": "^1.4.2",
     "nodemailer": "^6.4.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
