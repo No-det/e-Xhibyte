@@ -658,6 +658,7 @@ input[type="password"] {
   margin: auto;
   background-color: rgb(254, 254, 255);
   padding: 50px;
+  /* position: relative; */
 }
 
 .hero-wrapper h1 {
@@ -673,6 +674,29 @@ input[type="password"] {
   width: 200px;
   border-radius: 50%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.hero-img:hover img {
+  opacity: 0.3;
+    cursor: pointer;
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.hero-img small{
+  position: absolute;
+  text-align: center;
+  top : 41%;
+  left: 48%;
+  opacity: 0;
+  font-size: large;
+  font-weight: bold;
+  color: rgb(243, 73, 243);;
+}
+
+.hero-img:hover small{
+  opacity: 1;
 }
 
 .hero-name h2 {
@@ -801,3 +825,5 @@ input[type="password"] {
   background-color: white;
   border: 1px solid rgb(243, 73, 243);
 }
+
+/* Ajal trying to do something */
