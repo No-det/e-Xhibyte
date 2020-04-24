@@ -679,23 +679,23 @@ input[type="password"] {
 
 .hero-img:hover img {
   opacity: 0.3;
-    cursor: pointer;
-    -webkit-filter: blur(2px);
-    filter: blur(2px);
+  cursor: pointer;
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
 }
 
-.hero-img small{
+.hero-img small {
   position: absolute;
   text-align: center;
-  top : 41%;
+  top: 41%;
   left: 48%;
   opacity: 0;
   font-size: large;
   font-weight: bold;
-  color: rgb(243, 73, 243);;
+  color: rgb(243, 73, 243);
 }
 
-.hero-img:hover small{
+.hero-img:hover small {
   opacity: 1;
 }
 
@@ -827,3 +827,52 @@ input[type="password"] {
 }
 
 /* Ajal trying to do something */
+/* Profile Pic edit */
+
+.profile-pic-background {
+  background: url(../img/loginbackground.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  filter: brightness(40%);
+  z-index: -2;
+}
+
+.background-info input {
+  width: 92%;
+  margin-bottom: 20px;
+}
+
+.input-dp-container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.dp-output img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+.background-info input[type="submit"] {
+  border: none;
+  width: 50%;
+  outline: none;
+  height: 40px;
+  background-color: rgb(248, 87, 235);
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.input-dp-container input[type="submit"]:hover {
+  background-color: white;
+  color: rgb(248, 87, 235);
+  border: 1px solid rgb(248, 87, 235);
+}
