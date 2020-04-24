@@ -3,6 +3,8 @@
 <head>
     <title>Upload Images to Server</title>
     <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/assets/js/imagePreview.js"> </script>
     
 </head>
 <body>
@@ -10,8 +12,11 @@
 <h1>Upload Image</h1>
  
 <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" accept="image/*" name="photo" >
+        <input type="file" accept="image/*" name="file" id='file' onchange="loadFile(event)">
         <input type="submit" value="upload">
+        <div>
+        <img id='output' />
+        </div>
 </form>
             
 

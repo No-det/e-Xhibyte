@@ -11,6 +11,9 @@ const authController  = require('./controllers/auth.controller');
 const middleWares = require('./middlewares/middlewares');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+const uuid = require('uuid/v4');
 
 
 const Test = require('./models/test.model');
@@ -23,6 +26,7 @@ const server = express();
 server.set("view engine","ejs");
 server.use("/assets/css", express.static(__dirname + "/assets/css"));
 server.use("/assets/img", express.static(__dirname + "/assets/img"));
+server.use("/uploads", express.static(__dirname + "/uploads"));
 server.use("/assets/js", express.static(__dirname + "/assets/js"));
 
 //connect to mongo db
@@ -90,32 +94,45 @@ server.get('/bookfair',middleWares.isLoggedIn , (req,res) => {
 
 //Testing to upload image
 //Path to save files
-const upload = multer({dest : __dirname+'/uploads/profileImages'});
+const upload = multer({dest : __dirname+'/uploads/'});
 
 server.get('/upload' ,(req,res) => {
-    res.render('testUpload');
-    // Test.find(images => res.sendFile(images.toString('base64')));
-
+    res.render('profileImageUploader');
 })
 
-server.post('/upload',upload.single('photo'),(req,res,next) => {
-    console.log(req.file)
-    // if(req.file) {
-    //     let newTest = new Test;
-    //     newTest.img.data = req.file;
-    //     newTest.img.contentType = 'image/png'
-    //     newTest.save(err => {
-    //         if(err)
-    //         console.log(err);
-
-    //         console.log('Image saved');
-    //     })
-    // }
-    // else {
-    //     console.log('No file uploaded');
-    //     return next(err);
-    // }
-})
+  
+  server.post(
+    "/upload", middleWares.isLoggedIn , 
+    upload.single("file" /* name attribute of <file> element in your form */),
+    (req, res) => {
+      const tempPath = req.file.path;
+      const imageName = uuid().toString()+'.png';
+      const targetPath = path.join(__dirname, "./uploads/"+imageName);
+  
+      if (path.extname(req.file.originalname).toLowerCase() === ".png" || path.extname(req.file.originalname).toLowerCase() === ".jpeg") {
+        fs.rename(tempPath, targetPath, err => {
+          if (err) return handleError(err, res);
+          User.findByIdAndUpdate({_id : req.user.id} , {imgUrl :  imageName} , err => {
+              if(err) {
+                  console.log(err);
+                  return res.redirect('/profile');
+              }
+              console.log('Image added.');
+              return res.redirect('/profile');
+          })
+        });
+      } else {
+        fs.unlink(tempPath, err => {
+          if (err) return handleError(err, res);
+  
+          res
+            .status(403)
+            .contentType("text/plain")
+            .end("Only .png and .jpeg files are allowed!");
+        });
+      }
+    }
+  );
 
 
 const PORT = process.env.PORT || 5000;
