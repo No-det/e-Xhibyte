@@ -10,4 +10,5 @@ let exhibitionSchema = new Schema({
     status : { type : String}
 });
 
+
 module.exports = mongoose.model("exhibition",exhibitionSchema);

@@ -52,11 +52,9 @@
           <div class="hero-detail">
             <p>Events Organised:</p>
             <div class="org-events-list">
-              <p>Calicut Art Fest I</p>
-              <p>Calicut Art Fest II</p>
-              <p>Calicut Art Fest III</p>
-              <p>Calicut Art Fest IV</p>
-              <p>Calicut Art Fest V</p>
+              <% user.bookFair.map(fairs => { %>
+                <p><%= fairs.name %></p>
+              <% }) %>
             </div>
           </div>
         </div>

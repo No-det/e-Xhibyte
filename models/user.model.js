@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const bookFair = require('./bookfair.model');
+const exhibition = require('./exhibition.model');
 
 let userSchema = mongoose.Schema({
     name : { type : String },
@@ -12,6 +14,9 @@ let userSchema = mongoose.Schema({
     isActive : {type : Boolean , default : false },
     passwordResetToken : { type : String },
     resetPasswordExpires : { type : Date },
+    bookFair: [{ type: mongoose.Schema.Types.ObjectId, ref: 'bookFair' }],
+    exhibition : [{type : mongoose.Schema.Types.ObjectId , ref: 'exhibition'}],
+
 });
 
 userSchema.plugin(passportLocalMongoose);

@@ -10,4 +10,5 @@ let bookFairSchema = new Schema({
     status : { type : String }
 });
 
+
 module.exports = mongoose.model("bookFair",bookFairSchema);
