@@ -16,7 +16,6 @@ const fs = require('fs');
 const uuid = require('uuid/v4');
 
 
-const Test = require('./models/test.model');
 const User = require('./models/user.model');
 
 //Creating server

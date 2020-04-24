@@ -14,7 +14,7 @@ let userSchema = mongoose.Schema({
     isActive : {type : Boolean , default : false },
     passwordResetToken : { type : String },
     resetPasswordExpires : { type : Date },
-    imgUrl : {type : String},
+    imgUrl : {type : String , default : 'defaultProPic.png'},
     bookFair: [{ type: mongoose.Schema.Types.ObjectId, ref: 'bookFair' }],
     exhibition : [{type : mongoose.Schema.Types.ObjectId , ref: 'exhibition'}],
 
