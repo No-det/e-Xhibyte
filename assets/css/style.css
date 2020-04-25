@@ -687,8 +687,8 @@ input[type="password"] {
 .hero-img small {
   position: absolute;
   text-align: center;
-  top: 48%;
-  left: 48%;
+  padding-left: 65px;
+  padding-top: 85px;
   opacity: 0;
   font-size: large;
   font-weight: bold;

@@ -91,8 +91,8 @@ server.get('/bookfair',middleWares.isLoggedIn , (req,res) => {
 })
 
 
-//Testing to upload image
-//Path to save files
+                //Uploading profile Image
+                //Path to save files
 const upload = multer({dest : __dirname+'/uploads/'});
 
 server.get('/upload' ,(req,res) => {
@@ -132,7 +132,7 @@ server.get('/upload' ,(req,res) => {
       }
     }
   );
-
+            // Profile Image Uploading done
 
 const PORT = process.env.PORT || 5000;
 

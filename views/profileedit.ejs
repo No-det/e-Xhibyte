@@ -26,7 +26,11 @@
       <h1>Profile</h1>
       <div class="hero-container">
         <div class="hero-img">
-          <img src="/uploads/<%= user.imgUrl %>" alt="pro pic" />
+          <a href="/upload">
+          <img src="/uploads/<%= user.imgUrl %>" alt="profile image">
+          <small>Change</small>
+          </a>
+          </img>
         </div>
         <div class="hero-name">
           <h2><strong><%= user.name %></strong></h2>
