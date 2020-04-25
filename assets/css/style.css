@@ -674,7 +674,7 @@ input[type="password"] {
   width: 200px;
   border-radius: 50%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.7);
-  position: relative;
+  /* position: relative; */
 }
 
 .hero-img:hover img {
@@ -686,8 +686,7 @@ input[type="password"] {
 
 .hero-img small{
   position: absolute;
-  text-align: center;
-  top : 41%;
+  top : 43%;
   left: 48%;
   opacity: 0;
   font-size: large;
