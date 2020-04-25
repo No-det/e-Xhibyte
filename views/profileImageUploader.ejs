@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Upload Images to Server</title>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="/assets/js/imagePreview.js"> </script>
-    
-</head>
-<body>
-
-<h1>Upload Image</h1>
- 
-<form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" accept="image/*" name="file" id='file' onchange="loadFile(event)">
-        <input type="submit" value="upload">
-        <div>
-        <img id='output' />
-        </div>
-</form>
-            
-
-</body>
+    <script src="/assets/js/imagePreview.js"></script>
+    <title>e-Xhibyte | Change DP</title>
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <h1>e-Xhibyte</h1>
+        <h6><i>Host your dream from your device.</i></h6>
+      </div>
+      <div class="nav">
+        <a href="/home">Home</a>
+        <span>|</span>
+        <a href="/logout">Log Out</a>
+      </div>
+    </div>
+    <div class="profile-pic-background"></div>
+    <div class="login-box">
+      <div class="login-header">
+        <h1>Upload Image</h1>
+      </div>
+      <div class="background-info">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <div class="input-dp-container">
+            <input
+              type="file"
+              accept="image/*"
+              name="file"
+              id="file"
+              onchange="loadFile(event)"
+              class="inputfile"
+            />
+            <label for="file">Choose a file</label><br/>
+            <div class="dp-output">
+              <img id="output" />
+            </div>
+            <input type="submit" value="Upload" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
