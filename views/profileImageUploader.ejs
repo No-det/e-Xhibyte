@@ -29,7 +29,6 @@
       <div class="login-header">
         <h1>Upload Image</h1>
       </div>
-      <br />
       <div class="background-info">
         <form action="/upload" method="post" enctype="multipart/form-data">
           <div class="input-dp-container">
@@ -39,7 +38,9 @@
               name="file"
               id="file"
               onchange="loadFile(event)"
+              class="inputfile"
             />
+            <label for="file">Choose a file</label><br/>
             <div class="dp-output">
               <img id="output" />
             </div>

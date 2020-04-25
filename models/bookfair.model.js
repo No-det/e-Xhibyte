@@ -7,7 +7,7 @@ let bookFairSchema = new Schema({
     location : { type : String },
     startDate : { type : Date },
     endDate : { type : Date },
-    status : { type : String }
+    isLive : { type : Boolean }
 });
 
 

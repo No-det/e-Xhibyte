@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let exhibitionSchema = new Schema({
+let paintingExhibitionSchema = new Schema({
     name : { type : String },
     organizer : { type : String },
     location : { type : String },
@@ -11,4 +11,4 @@ let exhibitionSchema = new Schema({
 });
 
 
-module.exports = mongoose.model("exhibition",exhibitionSchema);
+module.exports = mongoose.model("paintingExhibition",paintingExhibitionSchema);
