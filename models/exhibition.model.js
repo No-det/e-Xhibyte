@@ -7,7 +7,9 @@ let exhibitionSchema = new Schema({
     location : { type : String },
     startDate : { type : Date },
     endDate : { type : Date },
-    isLive : { type : Boolean }
+    isLive : { type : Boolean },
+    applicant : [{type : mongoose.Schema.Types.ObjectId , ref: 'applicant'}],
+
 });
 
 

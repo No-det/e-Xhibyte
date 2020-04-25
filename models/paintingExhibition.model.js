@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 let paintingExhibitionSchema = new Schema({
@@ -7,7 +7,8 @@ let paintingExhibitionSchema = new Schema({
     location : { type : String },
     startDate : { type : Date },
     endDate : { type : Date },
-    isLive : { type : Boolean }
+    isLive : { type : Boolean },
+    applicant : [{type : mongoose.Schema.Types.ObjectId , ref: 'applicant'}],
 });
 
 

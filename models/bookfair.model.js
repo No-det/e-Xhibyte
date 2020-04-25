@@ -7,7 +7,9 @@ let bookFairSchema = new Schema({
     location : { type : String },
     startDate : { type : Date },
     endDate : { type : Date },
-    isLive : { type : Boolean }
+    isLive : { type : Boolean , default : true },
+    applicant : [{type : mongoose.Schema.Types.ObjectId , ref: 'applicant'}],
+
 });
 
 
