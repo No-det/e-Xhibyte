@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 let applicantSchema = new mongoose.Schema({
     name: {type: String},
-    college: {type: String},
-    phone: {type : String},
+    workName: {type: String},
+    workImgUrl: {type : String},
     desc: {type : String},
 })
 

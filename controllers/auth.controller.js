@@ -101,6 +101,7 @@ module.exports = server => {
                     from: 'e-Xhibyte<visitthestars0010@gmail.com>',
                     subject: 'Confirm Mail',
                     text:`Hey, 
+                    The OTP for confirming your registration is ${token}.
                     Click on the following link to enter your OTP : http://${req.headers.host}/confirm/${token}
                     
                     Thank you!`
@@ -177,6 +178,7 @@ module.exports = server => {
                     from: 'e-Xhibyte <visitthestars0010@gmail.com>',
                     subject: 'Password Reset',
                     text: `Hey,
+                    The OTP to reset your password : ${token}.
                     Click on this link to enter your OTP : http://${req.headers.host}/reset/${token}
                    
                     Thank you! `
