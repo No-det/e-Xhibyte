@@ -82,7 +82,7 @@ server.get('/home' , middleWares.isLoggedIn , (req,res) => {
     res.render('home',{user:req.user})
 })
 
-server.get('/exhibitions', (req,res) => {
+server.get('/exhibitions', middleWares.isLoggedIn , (req,res) => {
     res.render('exhibition');
 })
 
