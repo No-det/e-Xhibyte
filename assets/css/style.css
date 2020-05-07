@@ -273,7 +273,9 @@ input[type="password"] {
   color: gray;
   cursor: pointer;
 }
-
+.input-container small {
+  color: red;
+}
 /* OTP Page */
 
 .otp-background {
