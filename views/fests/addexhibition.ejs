@@ -4,65 +4,65 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../assets/css/style.css" />
-    <title>e-Xhibyte | Application</title>
+    <title>e-Xhibyte | Book Fair</title>
   </head>
   <body>
     <div class="login-background"></div>
-    <div
-      class="signup-box"
-      style="padding-bottom: none !important; height: 750px;"
-    >
+    <div class="signup-box" style="height: 750px;">
       <div class="login-header">
-        <h1>Application</h1>
+        <h1>New Exhibition</h1>
       </div>
       <br />
       <div class="signup-info">
         <form action="/addBookFair" method="POST">
           <div class="input-container">
-            <p>Applicant</p>
-            <input type="text" name="applicant" placeholder="Enter your name" />
-          </div>
-          <div class="input-container">
-            <p>Name of your Work:</p>
+            <p>Name:</p>
             <input
               type="text"
-              name="work"
-              placeholder="Enter the Name of your Work"
+              name="name"
+              placeholder="Enter Name of the Program"
             />
           </div>
           <div class="input-container">
-            <p>Description:</p>
+            <p>Organiser(s):</p>
             <input
               type="text"
-              name="description"
-              placeholder="Enter your location"
+              name="organiser"
+              placeholder="Enter the name of organiser/organisation"
             />
           </div>
           <div class="input-container">
+            <p>Location:</p>
             <input
-              type="file"
-              accept="image/*"
-              name="file"
-              id="file"
-              onchange="loadFile(event)"
-              class="inputfile"
+              type="text"
+              name="location"
+              placeholder="Enter location of Exhibition"
             />
-            Add an Image: &nbsp;
-            <label for="file">Choose a file</label><br />
-
-            <div class="dp-output">
-              <img id="output" />
-            </div>
           </div>
-          <input type="submit" value="Submit" style="margin-bottom: 0;" />
+          <div class="input-container">
+            <p>Start Date:</p>
+            <input
+              type="text"
+              name="startDate"
+              placeholder="Enter starting date"
+            />
+          </div>
+          <div class="input-container">
+            <p>End Date:</p>
+            <input
+              type="text"
+              name="endDate"
+              placeholder="When the program ends"
+            />
+          </div>
+          <input type="submit" value="Add" style="width: 100%;" />
         </form>
       </div>
     </div>
-
     <script
       src="https://kit.fontawesome.com/d2a549144d.js"
       crossorigin="anonymous"

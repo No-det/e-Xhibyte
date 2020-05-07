@@ -85,9 +85,15 @@ server.get('/home' , middleWares.isLoggedIn , (req,res) => {
 server.get('/exhibitions', middleWares.isLoggedIn , (req,res) => {
     res.render('exhibition');
 })
-
 server.get('/bookfair',middleWares.isLoggedIn , (req,res) => {
     res.render('bookfair');
+})
+
+server.get('/regbookfair',middleWares.isLoggedIn , (req,res) => {
+    res.render('fests/addbookfair');
+})
+server.get('/regexhibition',middleWares.isLoggedIn , (req,res) => {
+  res.render('fests/addexhibition');
 })
 
 

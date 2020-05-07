@@ -26,6 +26,11 @@ body {
 .logo i {
   padding-top: -20px;
 }
+.logo h1 {
+  text-shadow: 1px 1px grey;
+  font-family: 'Audiowide', cursive;
+  letter-spacing: 3px;
+}
 
 .signup {
   padding: 10px;
@@ -895,4 +900,66 @@ input[type="password"] {
 .inputfile+label:hover{
   cursor: pointer;
   border: 1.8px solid rgb(248, 87, 235);
+}
+
+/*************ADMIN PAGES**************/
+
+.admin-background {
+  background: url(../img/loginbackground.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  filter: brightness(60%);
+  z-index: -2;
+}
+.admin-box {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  background-color: white;
+  padding: 50px 50px;
+}
+.admin-box h1 {
+  padding-bottom: 20px;
+  text-align: center;
+}
+.admin-info input {
+  width: 92%;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid black;
+  height: 40px;
+  outline: none;
+  font-size: 16px;
+}
+.admin-info label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.adm-button{
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  border: 2px solid rgb(248, 87, 235);
+  background-color: rgb(248, 87, 235);
+  font-weight: 500;
+  min-width: 75px;
+  min-height: 43px;
+  margin-left: 50px;
+  margin-top: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.adm-button:hover{
+  color: rgb(248, 87, 235);
+  border: 2px solid rgb(248, 87, 235);
+  background-color: white;
 }
