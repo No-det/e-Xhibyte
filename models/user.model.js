@@ -5,6 +5,7 @@ const exhibition = require('./exhibition.model');
 
 let userSchema = mongoose.Schema({
     name : { type : String },
+    tag : { type : String , default : 'artist'},
     username : { type : String },
     phone : { type : Number },
     email : { type : String },

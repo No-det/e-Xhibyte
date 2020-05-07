@@ -9,7 +9,7 @@ exports.showEditProfile = (req,res) => {
 }
 
 exports.editProfile = (req,res,next) => {
-    User.findByIdAndUpdate({_id : req.user.id} , {username :req.body.name , phone :req.body.phone ,
+    User.findByIdAndUpdate({_id : req.user.id} , {username :req.body.name , tag :req.body.tag , phone :req.body.phone ,
          email : req.body.email} ,err => {
         if(err) {
             console.log('error updating details');
