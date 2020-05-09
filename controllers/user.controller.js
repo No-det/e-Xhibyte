@@ -20,3 +20,8 @@ exports.editProfile = (req,res,next) => {
     })
 
 }
+
+
+exports.showDeleteProfile = (req,res) => {
+    res.render('deleteaccount', {user:req.user});
+}

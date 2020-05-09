@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <title>e-Xhibyte | Delete Account</title>
+  </head>
+
+  <body>
+    <div class="delete-background"></div>
+    <div class="delete-box">
+        <div class="delete-header">
+            <h1>Delete Account</h1>
+        </div>
+        <br/>
+        <div class="delete-info">
+          <p>Are you sure that you want to delete your account ?</p><br/>
+          <form action="/delete" method="POST">
+          <input type="submit" name="delete" value="Delete"><br/>
+          </form>
+          <div class="delete-info-can"><a href="/profile">Cancel</a><br /></div>
+        </div>
+    </div>
+</body>

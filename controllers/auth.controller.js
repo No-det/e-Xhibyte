@@ -15,7 +15,6 @@ module.exports = server => {
         res.render('login');
     });
 
-   
     server.post("/login",  (req, res, next) => {
         passport.authenticate("local", (err, user) => {
             if (err) {
@@ -43,12 +42,15 @@ module.exports = server => {
     });
 
 
+
     //Log-Out route
     server.get("/logout", (req, res) => {
         req.logout();
         console.log('User logged out!');
         res.redirect("/login");
     });
+
+
 
     //User Register Route
     server.get('/register',(req,res) => {
@@ -117,7 +119,7 @@ module.exports = server => {
                 });
         }
       
-    })
+    });
 
     //Confirmation for registration
     server.get('/confirm/:token' ,(req,res,next) => {
@@ -130,11 +132,13 @@ module.exports = server => {
             console.log('Account Created Sucessfully');
             
         })
-    })
+    });
+
+
 
     server.get('/forget' , (req,res) => {
         res.render('forget');
-    })
+    });
 
     server.post('/forget' ,(req,res) => {
         async.waterfall([
@@ -202,7 +206,9 @@ module.exports = server => {
             req.flash('success' , "An OTP has been sent to your mail.")
             res.redirect('/forget');
         })
-    })
+    });
+
+
 
     server.get('/reset/:token' ,(req,res) => {
         User.findOne({ passwordResetToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },  (err, user) => {
@@ -217,7 +223,7 @@ module.exports = server => {
                 res.render('reset', { token: req.params.token, message: false });
             }
         });
-    })
+    });
 
     server.post('/reset/:token' ,(req,res) => {
         async.waterfall([
@@ -278,8 +284,19 @@ module.exports = server => {
         ],err => {
             res.redirect('/login');
         })
-    })
+    });
+
+
+    
+    server.post('/delete', (req,res) => {
+        User.findByIdAndDelete({_id : req.user.id}, err => {
+            if(err) {
+                console.log('Eror in deleting acoount');
+                return next(err);
+            }
+            console.log('Account Deleted');
+            return res.redirect('/');
+        })
+    });
 }
-
-
 

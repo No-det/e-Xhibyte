@@ -902,6 +902,68 @@ input[type="password"] {
   border: 1.8px solid rgb(248, 87, 235);
 }
 
+/************* DELETE ACCOUNT PAGE ******/
+
+.delete-background {
+  background: url(../img/loginbackground.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  filter: brightness(60%);
+  z-index: -2;
+}
+
+.delete-box {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 350px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  background-color: white;
+  padding: 50px 50px;
+  align-items: center;
+  text-align: center;
+}
+
+.delete-header h1 {
+  padding-bottom: 20px;
+  text-align: center;
+  color: red;
+}
+.delete-info p {
+  font-weight: bold;
+  font-size: 18px;
+}
+.delete-info input[type="submit"] {
+  text-decoration: none;
+  background-color: rgb(189, 63, 63);
+  padding: 15px 25px;
+  color: white;
+  border-radius: 2px;
+  border: none;
+}
+.delete-info input[type="submit"]:hover {
+  color: rgb(189, 63, 63);
+  background-color: white;
+  border: 1px solid rgb(189, 63, 63);
+}
+
+.delete-info-can a {
+  margin-right: 50px;
+  text-decoration: none;
+  padding: 10px 20px;
+  color: gray;
+  border-radius: 2px;
+  float: left;
+}
+.delete-info-can a:hover {
+  color: rgb(248, 87, 235);
+  background-color: white;
+}
+
 /*************ADMIN PAGES**************/
 
 .admin-background {
