@@ -1,8 +1,9 @@
-import express from 'express';
+const express = require('express');
 
 const router = express.Router();
 
-import BookFairModel from '../models/bookfair.model';
+const BookFairModel = require('../models/bookFair.model');
+
 
 //Show all live fairs
 router.get('/' ,(req,res,next) => {
@@ -11,7 +12,7 @@ router.get('/' ,(req,res,next) => {
             console.log(err);
             return next(err);
         }
-        return res.render('bookFair' , {fairs:fairs});
+        return res.render('fests/bookFair' , {fairs:fairs});
     })
 })
 
@@ -76,7 +77,7 @@ router.get('/:id' , (req,res,next) => {
             return next(err);
         }
         console.log('Book fair found');
-        return res.render('/bookFair',{fairs:fairs})
+        return res.render('fests/bookFair',{fairs:fairs})
     })
 })
 
@@ -88,7 +89,7 @@ router.get('/upcoming' ,(req,res,next) => {
             return next(err);
         }
         console.log('Showing upcoming fairs');
-        return res.render('/bookFair' , {fairs: fairs});
+        return res.render('fests/bookFair' , {fairs: fairs});
     })
 })
 

@@ -82,18 +82,24 @@ server.get('/home' , middleWares.isLoggedIn , (req,res) => {
     res.render('home',{user:req.user})
 })
 
-server.get('/exhibitions', middleWares.isLoggedIn , (req,res) => {
-    res.render('exhibition');
+server.get('/artExb', middleWares.isLoggedIn , (req,res) => {
+    res.render('fests/artExb');
 })
-server.get('/bookfair',middleWares.isLoggedIn , (req,res) => {
-    res.render('bookfair');
+server.get('/bookFair',middleWares.isLoggedIn , (req,res) => {
+    res.render('fests/bookFair');
+})
+server.get('/productExb',middleWares.isLoggedIn , (req,res) => {
+  res.render('fests/productExb');
 })
 
-server.get('/regbookfair',middleWares.isLoggedIn , (req,res) => {
-    res.render('fests/addbookfair');
+server.get('/artExb/add',middleWares.isLoggedIn , (req,res) => {
+    res.render('fests/addArtExb');
 })
-server.get('/regexhibition',middleWares.isLoggedIn , (req,res) => {
-  res.render('fests/addexhibition');
+server.get('/bookFair/add',middleWares.isLoggedIn , (req,res) => {
+  res.render('fests/addBookFair');
+})
+server.get('/productExb/add',middleWares.isLoggedIn , (req,res) => {
+  res.render('fests/addProductExb');
 })
 
 

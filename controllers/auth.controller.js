@@ -14,7 +14,7 @@ module.exports = server => {
     server.get('/login' ,(req,res) => {
         res.render('login');
     });
-
+    var aaro = 'User';
     server.post("/login",  (req, res, next) => {
         passport.authenticate("local", (err, user) => {
             if (err) {
@@ -34,9 +34,10 @@ module.exports = server => {
                     req.flash("error", err.message);
                     return next(err);
                 }
-                console.log(user.username + " Logged in.");
+                console.log(user.username + " logged in.");
                 req.flash("success", "Good to see you again, " + user.username);
                res.redirect('/home/');
+               aaro = user.username;
             });
         })(req, res, next);
     });
@@ -46,7 +47,7 @@ module.exports = server => {
     //Log-Out route
     server.get("/logout", (req, res) => {
         req.logout();
-        console.log('User logged out!');
+        console.log(`${aaro} logged out.`);
         res.redirect("/login");
     });
 
