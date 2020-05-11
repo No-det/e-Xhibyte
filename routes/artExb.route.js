@@ -2,94 +2,21 @@ const express = require('express');
 
 const router = express.Router();
 
-const ArtExbModel = require('../models/artExb.model');
+const artExbController = require('../controllers/artExb.controller');
 
 
-//Show all live art exb
-router.get('/' ,(req,res,next) => {
-    ArtExbModel.find({isLive : true} ,(fairs,err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        return res.render('fests/artExb' , {fairs:fairs});
-    })
-})
+router.get('/', artExbController.viewArtExb); // View all live AE
+//router.get('/:id', artExbController.viewAEById); // View all AE by Id
+//router.get('/upcoming', artExbController.viewUpArtExb); // View upcoming AE
 
-//Add a new art exb
-router.get('/add' , (req,res) => {
-    res.render('fests/addArtExb');
-})
+router.get('/add', artExbController.viewArtExbForm); // View AE add form
+router.post('/add', artExbController.addArtExb); // Add new AE
 
-router.post('/add' , (req,res,next) => {
-    let artExb = new ArtExbModel({
+router.get('/addApplicant', artExbController.viewApplicantForm); // View Applicant add form
+router.post('/:id/addApplicant', artExbController.addApplicantAE); // Add new applicant
 
-    });
+//router.get('/delete', artExbController.viewDeletePage); // view AE delete form
+//router.post('/delete/:id', artExbController.deleteArtExb); // delete AE
 
-    artExb.save(err => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log('New Art Exb added');
-        return res.redirect('/artExb');
-    })
-})
 
-//Delete an art exb
-router.delete('/delete/:id', (req,res) => {
-    ArtExbModel.findByIdAndDelete({_id : req.params.id} ,err=> {
-        if(err) {
-            console.log('Error in deleting Art Exb');
-            return next(err);
-        }
-        console.log('Art Exb deleted');
-        return res.redirect('/artExb');
-    })
-})
-
-//Add Applicants to art exb
-router.post('/:id/addApplicant' ,(req,res,next) => {
-    ArtExbModel.findById({_id : req.params.id} , (artExb , err ) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        let newApplicant = new applicant({
-
-        })
-        newApplicant.save(err => {
-            if(err) {
-                console.log(err);
-                return next(err);
-            }
-            console.log('Applicant added to Art Exb');
-            return res.redirect('/artExb/:id');
-        })
-    })  
-})
-
-//View art exb by Id
-router.get('/:id' , (req,res,next) => {
-    ArtExbModel.findById({_id : req.params.id}, (fairs , err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log('Art Exb found');
-        return res.render('fests/artExb',{fairs:fairs})
-    })
-})
-
-//View upcoming art exb
-router.get('/upcoming' ,(req,res,next) => {
-    ArtExbModel.find({startDate : {$gt : Date.now()}} , (fairs,err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log('Showing upcoming Art Exb');
-        return res.render('fests/artExb' , {fairs: fairs});
-    })
-})
-
+module.exports = router;

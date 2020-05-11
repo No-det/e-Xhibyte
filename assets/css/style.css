@@ -31,6 +31,10 @@ body {
   font-family: 'Audiowide', cursive;
   letter-spacing: 3px;
 }
+.logo a {
+  text-decoration: none;
+  color: rgb(73, 73, 73);
+}
 
 .signup {
   padding: 10px;

@@ -62,9 +62,19 @@ passport.deserializeUser(User.deserializeUser());
 const adminRoute = require('./routes/admin.route');
 const userRoute = require("./routes/user.route");
 
+const bookFairRoute = require('./routes/bookFair.route');
+const artExbRoute = require('./routes/artExb.route');
+const productExbRoute = require('./routes/productExb.route');
+
+
 //Routing
 server.use('/polisaanam', middleWares.hasAdminPrivs, adminRoute);
 server.use('/profile', middleWares.isLoggedIn , userRoute);
+
+server.use('/bookFair', middleWares.isLoggedIn, bookFairRoute);
+server.use('/artExb', middleWares.isLoggedIn, artExbRoute);
+server.use('/productExb', middleWares.isLoggedIn, productExbRoute);
+
 
 authController(server);
 
@@ -82,25 +92,6 @@ server.get('/home' , middleWares.isLoggedIn , (req,res) => {
     res.render('home',{user:req.user})
 })
 
-server.get('/artExb', middleWares.isLoggedIn , (req,res) => {
-    res.render('fests/artExb');
-})
-server.get('/bookFair',middleWares.isLoggedIn , (req,res) => {
-    res.render('fests/bookFair');
-})
-server.get('/productExb',middleWares.isLoggedIn , (req,res) => {
-  res.render('fests/productExb');
-})
-
-server.get('/artExb/add',middleWares.isLoggedIn , (req,res) => {
-    res.render('fests/addArtExb');
-})
-server.get('/bookFair/add',middleWares.isLoggedIn , (req,res) => {
-  res.render('fests/addBookFair');
-})
-server.get('/productExb/add',middleWares.isLoggedIn , (req,res) => {
-  res.render('fests/addProductExb');
-})
 
 
                 //Uploading profile Image

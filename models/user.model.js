@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
-const bookFair = require('./bookfair.model');
-const artExb = require('./artExb.model');
-const productExb = require('./productExb.model');
+const BookFair = require('./bookFair.model');
+const ArtExb = require('./artExb.model');
+const ProductExb = require('./productExb.model');
 
 let userSchema = mongoose.Schema({
     name : { type : String },
@@ -17,7 +17,7 @@ let userSchema = mongoose.Schema({
     passwordResetToken : { type : String },
     resetPasswordExpires : { type : Date },
     imgUrl : {type : String , default : 'defaultProPic.png'},
-    bookFair: [{ type: mongoose.Schema.Types.ObjectId, ref: 'bookFair' }],
+    bookFair: [{ type: mongoose.Schema.Types.ObjectId, ref: 'BookFair' }],
     artExb : [{type : mongoose.Schema.Types.ObjectId , ref: 'artExb'}],
     productExb : [{type : mongoose.Schema.Types.ObjectId , ref: 'productExb'}],
 

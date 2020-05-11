@@ -2,94 +2,21 @@ const express = require('express');
 
 const router = express.Router();
 
-const BookFairModel = require('../models/bookFair.model');
+const bookFairController = require('../controllers/bookFair.controller');
 
 
-//Show all live fairs
-router.get('/' ,(req,res,next) => {
-    BookFairModel.find({isLive : true} ,(fairs,err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        return res.render('fests/bookFair' , {fairs:fairs});
-    })
-})
+router.get('/', bookFairController.viewBookFair); // View all live BF
+//router.get('/:id', bookFairController.viewBFById); // View all BF by Id
+//router.get('/upcoming', bookFairController.viewUpBookFairs); // View upcoming BF
 
-//Add a new fair
-router.get('/add' , (req,res) => {
-    res.render('fests/addBookFair');
-})
+router.get('/add', bookFairController.viewBookFairForm); // View BF add form
+router.post('/add', bookFairController.addBookFair); // Add new BF
 
-router.post('/add' , (req,res,next) => {
-    let bookFair = new BookFairModel({
+router.get('/addApplicant', bookFairController.viewApplicantForm); // View Applicant add form
+router.post('/:id/addApplicant', bookFairController.addApplicantBF); // Add new applicant
 
-    });
+//router.get('/delete', bookFairController.viewDeletePage); // view BF delete form
+//router.post('/delete/:id', bookFairController.deleteBookFair); // delete BF
 
-    bookFair.save(err => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log('New fair added');
-        return res.redirect('/bookFair');
-    })
-})
 
-//Delete a new fair
-router.delete('/delete/:id', (req,res) => {
-    BookFairModel.findByIdAndDelete({_id : req.params.id} ,err=> {
-        if(err) {
-            console.log('Error in deleting Fair');
-            return next(err);
-        }
-        console.log('Fair deleted');
-        return res.redirect('/bookFair');
-    })
-})
-
-//Add Applicants to book fair
-router.post('/:id/addApplicant' ,(req,res,next) => {
-    BookFairModel.findById({_id : req.params.id} , (bookFair , err ) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        let newApplicant = new applicant({
-
-        })
-        newApplicant.save(err => {
-            if(err) {
-                console.log(err);
-                return next(err);
-            }
-            console.log('applicant added to book fair');
-            return res.redirect('/bookFair/:id');
-        })
-    })  
-})
-
-//View Book fairs by Id
-router.get('/:id' , (req,res,next) => {
-    BookFairModel.findById({_id : req.params.id}, (fairs , err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log('Book fair found');
-        return res.render('fests/bookFair',{fairs:fairs})
-    })
-})
-
-//View upcoming fairs
-router.get('/upcoming' ,(req,res,next) => {
-    BookFairModel.find({startDate : {$gt : Date.now()}} , (fairs,err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log('Showing upcoming fairs');
-        return res.render('fests/bookFair' , {fairs: fairs});
-    })
-})
-
+module.exports = router;
