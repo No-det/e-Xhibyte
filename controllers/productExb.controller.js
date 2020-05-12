@@ -11,7 +11,16 @@ const ProductExb = require('../models/productExb.model');
     })
 }*/
 exports.viewProductExb = (req, res) => {
-    res.render('fests/productExb');
+    User.find({}, function(err, users) {
+        var userList = [];
+        var n = 0;
+        users.forEach(function(user) {
+          userList[n] = user;
+          n++;
+        });
+    
+        res.render('fests/productExb', {userList : userList});
+      });
 }
 
 exports.viewProductExbForm = (req, res) => {
@@ -19,18 +28,21 @@ exports.viewProductExbForm = (req, res) => {
 }
 
 exports.addProductExb = (req, res, next) => {
-    let productExb = new ProductExb({
-
-    });
-
-    productExb.save(err => {
+    let newProductExb = {
+        name : req.body.name,
+        organizer : req.body.organiser,
+        location : req.body.location,
+        startDate : req.body.startDate,
+        endDate : req.body.endDate,
+    }
+    User.findByIdAndUpdate({_id : req.user.id}, {$push: {productExb : newProductExb}}, err => {
         if(err) {
-            console.log(err);
+            console.log('Error in adding product exb.');
             return next(err);
         }
-        console.log('New product Exb added');
+        console.log('New product exb added.');
         return res.redirect('/productExb');
-    })
+    });
 }
 
 exports.viewDeletePage = (req, res) => {

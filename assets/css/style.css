@@ -285,6 +285,18 @@ input[type="password"] {
 .input-container small {
   color: red;
 }
+.thanku{
+  margin-top: 25vh;
+}
+.thanku p{
+  color: rgb(248, 87, 235);
+  text-shadow: 3px 3px rgb(238, 175, 231);
+  font-family: 'Audiowide', cursive;
+  font-size: 100px;
+}
+.thanku a{
+  text-decoration: none;
+}
 /* OTP Page */
 
 .otp-background {

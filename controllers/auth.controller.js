@@ -129,7 +129,7 @@ module.exports = server => {
                 console.log('Error finding user with the OTP');
                 return next(err);
             }
-            res.send('Account creation successful.')
+            res.render('confirmed');
             console.log('Account Created Sucessfully');
             
         })

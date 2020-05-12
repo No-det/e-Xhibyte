@@ -11,7 +11,16 @@ const ArtExb = require('../models/artExb.model');
     })
 }*/
 exports.viewArtExb = (req, res) => {
-    res.render('fests/artExb');
+    User.find({}, function(err, users) {
+        var userList = [];
+        var n = 0;
+        users.forEach(function(user) {
+          userList[n] = user;
+          n++;
+        });
+    
+        res.render('fests/artExb', {userList : userList});
+      });
 }
 
 exports.viewArtExbForm = (req, res) => {
@@ -19,18 +28,21 @@ exports.viewArtExbForm = (req, res) => {
 }
 
 exports.addArtExb = (req, res, next) => {
-    let artExb = new ArtExb({
-
-    });
-
-    artExb.save(err => {
+    let newArtExb = {
+        name : req.body.name,
+        organizer : req.body.organiser,
+        location : req.body.location,
+        startDate : req.body.startDate,
+        endDate : req.body.endDate,
+    }
+    User.findByIdAndUpdate({_id : req.user.id}, {$push: {artExb : newArtExb}}, err => {
         if(err) {
-            console.log(err);
+            console.log('Error in adding art exb.');
             return next(err);
         }
-        console.log('New Art Exb added');
+        console.log('New art exb added.');
         return res.redirect('/artExb');
-    })
+    });
 }
 
 exports.viewDeletePage = (req, res) => {

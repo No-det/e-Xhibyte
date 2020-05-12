@@ -11,7 +11,16 @@ const BookFair = require('../models/bookFair.model');
     })
 } */
 exports.viewBookFair = (req, res) => {
-    res.render('fests/bookFair');
+    User.find({}, function(err, users) {
+        var userList = [];
+        var n = 0;
+        users.forEach(function(user) {
+          userList[n] = user;
+          n++;
+        });
+    
+        res.render('fests/bookFair', {userList : userList});
+      });
 }
 
 exports.viewBookFairForm = (req, res) => {
@@ -19,18 +28,21 @@ exports.viewBookFairForm = (req, res) => {
 }
 
 exports.addBookFair = (req, res, next) => {
-    let bookFair = new BookFair({
-
-    });
-
-    bookFair.save(err => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log('New Book Fair added');
-        return res.redirect('/bookFair');
-    });
+    let newBookFair = {
+        name : req.body.name,
+        organizer : req.body.organiser,
+        location : req.body.location,
+        startDate : req.body.startDate,
+        endDate : req.body.endDate,
+    }
+    User.findByIdAndUpdate({_id : req.user.id}, {$push: {bookFair : newBookFair}}, err => {
+       if(err) {
+           console.log('Error in adding book fair.');
+           return next(err);
+       }
+       console.log('New book fair added.');
+       return res.redirect('/bookFair');
+   });
 }
 
 exports.viewDeletePage = (req, res) => {

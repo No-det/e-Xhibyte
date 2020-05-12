@@ -17,10 +17,54 @@ let userSchema = mongoose.Schema({
     passwordResetToken : { type : String },
     resetPasswordExpires : { type : Date },
     imgUrl : {type : String , default : 'defaultProPic.png'},
-    bookFair: [{ type: mongoose.Schema.Types.ObjectId, ref: 'BookFair' }],
-    artExb : [{type : mongoose.Schema.Types.ObjectId , ref: 'artExb'}],
-    productExb : [{type : mongoose.Schema.Types.ObjectId , ref: 'productExb'}],
-
+    bookFair: [{
+        name : { type : String },
+        organizer : { type : String },
+        location : { type : String },
+        startDate : { type : Date },
+        endDate : { type : Date },
+        imgUrl : {type : String , default : 'defaultEventPic.png'},
+        status : { type : String, default : 'Upcoming'},
+        isLive : { type : Boolean , default : false },
+        applicants : [{
+            name: {type: String},
+            workName: {type: String},
+            workImgUrl: {type : String},
+            desc: {type : String},
+        }],
+    }],
+    artExb : [{
+        name : { type : String },
+        organizer : { type : String },
+        location : { type : String },
+        startDate : { type : Date },
+        endDate : { type : Date },
+        imgUrl : {type : String , default : 'defaultEventPic.png'},
+        status : { type : String, default : 'Upcoming' },
+        isLive : { type : Boolean, default : false },
+        applicants : [{
+            name: {type: String},
+            workName: {type: String},
+            workImgUrl: {type : String},
+            desc: {type : String},
+        }],
+    }],
+    productExb : [{
+        name : { type : String },
+        organizer : { type : String },
+        location : { type : String },
+        startDate : { type : Date },
+        endDate : { type : Date },
+        imgUrl : {type : String , default : 'defaultEventPic.png'},
+        status : { type : String, default : 'Upcoming' },
+        isLive : { type : Boolean, default : false },
+        applicants : [{
+            name: {type: String},
+            workName: {type: String},
+            workImgUrl: {type : String},
+            desc: {type : String},
+        }],
+    }],
 });
 
 userSchema.plugin(passportLocalMongoose);

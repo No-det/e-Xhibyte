@@ -30,96 +30,40 @@
             </div>
         </div>
         <div class="news-items">
-            <div class="news-item">
-                <div class="item-img">
-                    <img src="../assets/img/news-item-img.jpg" alt="">
-                </div>
-                <div class="item-text">
-                    <div class="event-name">
-                        <h2>Electronics Fest</h2>
-                    </div>
-                    <div class="event-place">
-                        <p>Kozhikode</p>
-                    </div>
-                    <div class="event-duration">
-                        <p><strong>From:</strong> 15 April 2020</p>
-                        <p><strong>To:</strong> 5 May 2020</p>
-                    </div>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div class="status-url-wrapper">
-                        <div class="status">
-                            <ul class="live">
-                                <li>Live Now</li> 
-                            </ul>
+            <% userList.map(users => { %>
+            <% users.productExb.map(fairs => { %>
+                    <div class="news-item">
+                        <div class="item-img">
+                            <img src="../assets/img/news-item-img.jpg" alt="">
                         </div>
-                        <div class="web-url">
-                            <a href="#">VISIT</a>
+                        <div class="item-text">
+                            <div class="event-name">
+                                <h2><%= fairs.name %></h2>
+                            </div>
+                            <div class="event-place">
+                                <p><%= fairs.location %></p>
+                            </div>
+                            <div class="event-duration">
+                                <p><strong>From:</strong> <%= fairs.startDate %></p>
+                                <p><strong>To:</strong> <%= fairs.endDate %></p>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="status-url-wrapper">
+                                <div class="status">
+                                    <ul class="live">
+                                        <li>Live Now</li> 
+                                    </ul>
+                                </div>
+                                <div class="web-url">
+                                    <a href="#">VISIT</a>
+                                </div>
+                            </div>                   
                         </div>
-                    </div>                   
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="item-img">
-                    <img src="../assets/img/news-item-img.jpg" alt="">
-                </div>
-                <div class="item-text">
-                    <div class="event-name">
-                        <h2>Electronics Fest</h2>
                     </div>
-                    <div class="event-place">
-                        <p>Kozhikode</p>
-                    </div>
-                    <div class="event-duration">
-                        <p><strong>From:</strong> 15 April 2020</p>
-                        <p><strong>To:</strong> 5 May 2020</p>
-                    </div>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div class="status-url-wrapper">
-                        <div class="status">
-                            <ul class="upcoming">
-                                <li>Upcoming</li> 
-                            </ul>
-                        </div>
-                        <div class="web-url">
-                            <a href="#">CONTRIBUTE</a>
-                        </div>
-                    </div>                   
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="item-img">
-                    <img src="../assets/img/news-item-img.jpg" alt="">
-                </div>
-                <div class="item-text">
-                    <div class="event-name">
-                        <h2>Handicraft Exhibition</h2>
-                    </div>
-                    <div class="event-place">
-                        <p>Kozhikode</p>
-                    </div>
-                    <div class="event-duration">
-                        <p><strong>From:</strong> 15 April 2020</p>
-                        <p><strong>To:</strong> 5 May 2020</p>
-                    </div>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div class="status-url-wrapper">
-                        <div class="status">
-                            <ul class="past">
-                                <li>Past Event</li> 
-                            </ul>
-                        </div>
-                        <div class="web-url-past">
-                            <p onclick="disabled()">VISIT</p>
-                        </div>
-                    </div>                   
-                </div>
-            </div>
+                    <% }) %>
+                    <% }) %>
         </div>
     </div>
     

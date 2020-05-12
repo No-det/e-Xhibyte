@@ -57,7 +57,16 @@
             <p>Events Organised:</p>
             <div class="org-events-list">
               <% user.bookFair.map(fairs => { %>
-                <p><%= fairs.name %></p>
+                <p>&nbsp; <%= fairs.name %></p>
+                <hr>
+              <% }) %>
+              <% user.artExb.map(fairs => { %>
+                <p>&nbsp; <%= fairs.name %></p>
+                <hr>
+              <% }) %>
+              <% user.productExb.map(fairs => { %>
+                <p>&nbsp; <%= fairs.name %></p>
+                <hr>
               <% }) %>
             </div>
           </div>
