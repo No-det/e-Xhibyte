@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>e-Xhibyte | Book Fair</title>
+    <title>e-Xhibyte | Book Exhibition</title>
 </head>
 <body>
     <div class="nav-bar">
@@ -14,7 +14,7 @@
             <h6><i>Host your dream from your device.</i></h6>
         </div>
         <div class="nav">
-            <a href="/bookFair/add">New Book Fair</a>
+            <a href="/bookExb/add">New Book Exhibition</a>
             <span>|</span>
             <a href="/profile">Profile</a>
             <span>|</span>   
@@ -26,12 +26,12 @@
         <h1>News Feed</h1>
         <div class="news-section-header">         
             <div class="book-fair-section active">
-                <h3><a href="./bookfair.html">Book Fair</a></h3>
+                <h3><a href="/bookExb">Book Exhibitions</a></h3>
             </div>
         </div>
         <div class="news-items">
             <% userList.map(users => { %>
-            <% users.bookFair.map(fairs => { %>
+            <% users.bookExb.map(fairs => { %>
             <div class="news-item">
                 <div class="item-img">
                     <img src="../assets/img/news-item-img.jpg" alt="">
@@ -76,7 +76,7 @@
 
 <script>
     function disabled() {
-        var message = "The Book Fair You wish to Visit is Over!";
+        var message = "The Book Exhibition you wish to Visit is Over!";
         alert(message);
     }
 </script>

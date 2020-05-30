@@ -1,7 +1,7 @@
 // const mongoose = require('mongoose');
 // const Schema = mongoose.Schema;
 
-// let bookFairSchema = new Schema({
+// let bookExbSchema = new Schema({
 //     name : { type : String },
 //     organizer : { type : String },
 //     location : { type : String },
@@ -15,4 +15,4 @@
 // });
 
 
-// module.exports = mongoose.model("bookFair",bookFairSchema);
+// module.exports = mongoose.model("bookExb",bookExbSchema);

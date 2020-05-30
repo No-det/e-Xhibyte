@@ -26,10 +26,10 @@
       <h1>Profile</h1>
       <div class="hero-container">
         <div class="hero-img">
-          <a href="/upload">
+          <z id='dpoptions'><a href="/upload">
           <img src="/uploads/<%= user.imgUrl %>" alt="profile image">
           <small>Change</small>
-          </a>
+          </a></z>
           </img>
         </div>
         <div class="hero-name">
@@ -67,6 +67,16 @@
     <div class="footer">
       <p id="copyright">Copyright &copy; 2020 | Anoroc</p>
     </div>
+    <script>
+      function changeOption() {
+        document.getElementById("dpoptions").innerHTML = `
+        <a href="/remove">
+          <img src="/uploads/<%= user.imgUrl %>" alt="profile image">
+          <small>Remove</small>
+          </a>
+        `;
+      }
+    </script>
     <script src="../assets/js/app.js"></script>
     <script
       src="https://kit.fontawesome.com/d2a549144d.js"
