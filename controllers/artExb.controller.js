@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 const { User } = require("../models/user.model");
 const { ArtExb } = require("../models/artExb.model");
-=======
-const User = require("../models/user.model");
-const ArtExb = require("../models/artExb.model");
->>>>>>> 7ebf6f133ca3f75bba1f2e3b33299cd2c06cdc91
 
 /*exports.viewArtExb = (req, res, next) => {
     ArtExb.find({isLive : true} ,(fairs,err) => {
@@ -92,20 +87,13 @@ exports.addApplicantAE = (req, res, next) => {
 };
 
 exports.viewAEById = (req, res, next) => {
-<<<<<<< HEAD
-  User.find({ artExb: { _id: req.params.id } }, (err, fair) => {
-=======
   User.find({ artExb: { _id: req.params.id } }, (fair, err) => {
->>>>>>> 7ebf6f133ca3f75bba1f2e3b33299cd2c06cdc91
     if (err) {
       console.log(err);
       return next(err);
     }
     console.log(`Art Exb found with _id : ${req.params.id}`);
-<<<<<<< HEAD
-=======
     console.log(err + fair);
->>>>>>> 7ebf6f133ca3f75bba1f2e3b33299cd2c06cdc91
     return res.render("fests/artExbPage", { fair: fair });
   });
 };
