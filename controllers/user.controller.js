@@ -1,4 +1,4 @@
-const { User } = require("../models/user.model");
+const User = require("../models/user.model");
 
 exports.viewProfile = (req, res) => {
   res.render("profile", { user: req.user });

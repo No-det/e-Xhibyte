@@ -1,15 +1,6 @@
-const { User } = require("../models/user.model");
-const { ProductExb } = require("../models/productExb.model");
+const User = require("../models/user.model");
+const ProductExb = require("../models/productExb.model");
 
-/*exports.viewProductExb = (req, res, next) => {
-    ProductExb.find({isLive : true} ,(fairs,err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        return res.render('fests/productExb' , {fairs:fairs});
-    })
-}*/
 exports.viewProductExb = (req, res) => {
   ProductExb.find({}, (err, exbs) => {
     var exbList = [];

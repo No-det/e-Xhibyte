@@ -15,7 +15,7 @@ const path = require("path");
 const fs = require("fs");
 const uuid = require("uuid/v4");
 
-const { User } = require("./models/user.model");
+const User = require("./models/user.model");
 
 //Creating server
 const server = express();

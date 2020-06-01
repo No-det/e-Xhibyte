@@ -1,5 +1,5 @@
-const { User } = require("../models/user.model");
-const { ArtExb } = require("../models/artExb.model");
+const User = require("../models/user.model");
+const ArtExb = require("../models/artExb.model");
 
 /*exports.viewArtExb = (req, res, next) => {
     ArtExb.find({isLive : true} ,(fairs,err) => {
@@ -28,8 +28,7 @@ exports.viewArtExbForm = (req, res) => {
 };
 
 exports.addArtExb = (req, res, next) => {
-
-  let newArtExb = new ArtExb ({
+  let newArtExb = new ArtExb({
     userId: req.user.id,
     name: req.body.name,
     organizer: req.body.organiser,
@@ -38,15 +37,14 @@ exports.addArtExb = (req, res, next) => {
     endDate: req.body.endDate,
   });
 
-  newArtExb.save(err => {
-    if(err) {
+  newArtExb.save((err) => {
+    if (err) {
       console.log(err);
       return next(err);
     }
-    console.log('New art exb added');
-    return res.redirect('/artExb');
+    console.log("New art exb added");
+    return res.redirect("/artExb");
   });
-
 };
 
 exports.viewDeletePage = (req, res) => {
@@ -86,21 +84,14 @@ exports.addApplicantAE = (req, res, next) => {
   });
 };
 
-exports.viewAEById = (req, res, next) => {
-  User.find({ artExb: { _id: req.params.id } }, (fair, err) => {
-    // if (err) {
-    //   console.log(err);
-    //   return next(err);
-    // }
-    try {
-      console.log(`Art Exb found with _id : ${req.params.id}`);
-      console.log(err + fair);
-      return res.render("fests/artExbPage", { fair: fair });
-    } catch (err) {
-      console.log(err);
-      return next(err);
-    }
-  });
+exports.viewAEById = async (req, res, next) => {
+  const fair = await ArtExb.findById({ _id: req.params.id });
+  if (fair) {
+    console.log(fair);
+    return res.render("fests/artExbPage", { fair: fair });
+  }
+  console.log(err);
+  return next(err);
 };
 
 exports.viewUpArtExb = (req, res, next) => {

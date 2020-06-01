@@ -1,4 +1,4 @@
-const { User } = require("../models/user.model");
+const User = require("../models/user.model");
 
 exports.viewHome = (req, res) => {
   res.render("admin/admin");
