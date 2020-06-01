@@ -1,70 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
     <title>e-Xhibyte | Art Exhibition</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="nav-bar">
-        <div class="logo">
-            <a href="/"><h1>e-Xhibyte</h1></a>
-            <h6><i>Host your dream from your device.</i></h6>
-        </div>
-        <div class="nav">
-            <a href="/artExb/add">Add Art Exhibition</a>
-            <span>|</span>
-            <a href="/artExb">Art Exhibitions</a>
-            <span>|</span>   
-            <a href="/home">Home</a>
-        </div>
+      <div class="logo">
+        <a href="/"><h1>e-Xhibyte</h1></a>
+        <h6><i>Host your dream from your device.</i></h6>
+      </div>
+      <div class="nav">
+        <a href="/artExb/add">Add Art Exhibition</a>
+        <span>|</span>
+        <a href="/artExb">Art Exhibitions</a>
+        <span>|</span>
+        <a href="/home">Home</a>
+      </div>
     </div>
 
     <div class="content-news">
-        <h1>Exb Name ivide varanam : <%= fair._id %></h1>
-        <div class="news-section-header">
-            <div class="exhibition-section active">
-                <h3><a href="/artExbPage">Exhibition Works</a></h3>
-            </div>
+      <h1>Exb Name ivide varanam : <%= fair.name %></h1>
+      <% console.log(fair) %>
+      <div class="news-section-header">
+        <div class="exhibition-section active">
+          <h3><a href="/artExbPage">Exhibition Works</a></h3>
         </div>
-        <div class="news-items">
-            <div class="news-item">
-                <div class="item-img">
-                    <img src="../../assets/img/exb-item-img.jpg" alt="">
-                </div>
-                <div class="item-text">
-                    <div class="event-name">
-                        <h2>Applicant Work Name</h2>
-                    </div>
-                    <br/>
-                    <div class="event-place">
-                        <p>Applicant Name</p>
-                    </div>
-                    <br/>
-                    <div class="event-duration">
-                        <p>Description : 
-                            abcd efgh ijkl mnop qrst uvwx yz abcd efgh ijkl mnop qrst uvwx yz
-                            abcd efgh ijkl mnop qrst uvwx yz abcd efgh ijkl mnop qrst uvwx yz
-                            abcd efgh ijkl mnop qrst uvwx yz abcd efgh ijkl mnop qrst uvwx yz
-                        </p>
-                    </div>
-                    <br/> <br/>
-                    <br/>
-                    <div class="status-url-wrapper">
-                        <div class="like-url">
-                            <a href="#">👍</a>
-                        </div>
-                    </div>                   
-                </div>
+      </div>
+      <div class="news-items">
+        <div class="news-item">
+          <div class="item-img">
+            <img src="../../assets/img/exb-item-img.jpg" alt="" />
+          </div>
+          <div class="item-text">
+            <div class="event-name">
+              <h2>Applicant Work Name</h2>
             </div>
+            <br />
+            <div class="event-place">
+              <p>Applicant Name</p>
+            </div>
+            <br />
+            <div class="event-duration">
+              <p>
+                Description : abcd efgh ijkl mnop qrst uvwx yz abcd efgh ijkl
+                mnop qrst uvwx yz abcd efgh ijkl mnop qrst uvwx yz abcd efgh
+                ijkl mnop qrst uvwx yz abcd efgh ijkl mnop qrst uvwx yz abcd
+                efgh ijkl mnop qrst uvwx yz
+              </p>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="status-url-wrapper">
+              <div class="like-url">
+                <a href="#">👍</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="footer">
-        <p id="copyright">Copyright &copy; 2020 | Anoroc</p>
+      <p id="copyright">Copyright &copy; 2020 | Anoroc</p>
     </div>
-</body>
+  </body>
 </html>

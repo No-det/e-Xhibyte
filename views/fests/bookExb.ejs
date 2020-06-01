@@ -44,8 +44,8 @@
                         <p><%= fairs.location %></p>
                     </div>
                     <div class="event-duration">
-                        <p><strong>From:</strong> <%= fairs.startDate %></p>
-                        <p><strong>To:</strong> <%= fairs.endDate %></p>
+                        <p><strong>From:</strong> <%= new Date(fairs.startDate).toDateString() %></p>
+                        <p><strong>To:</strong> <%= new Date(fairs.endDate).toDateString() %></p>
                     </div>
                     <br/>
                     <br/>
