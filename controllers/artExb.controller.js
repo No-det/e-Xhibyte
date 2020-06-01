@@ -88,13 +88,18 @@ exports.addApplicantAE = (req, res, next) => {
 
 exports.viewAEById = (req, res, next) => {
   User.find({ artExb: { _id: req.params.id } }, (fair, err) => {
-    if (err) {
+    // if (err) {
+    //   console.log(err);
+    //   return next(err);
+    // }
+    try {
+      console.log(`Art Exb found with _id : ${req.params.id}`);
+      console.log(err + fair);
+      return res.render("fests/artExbPage", { fair: fair });
+    } catch (err) {
       console.log(err);
       return next(err);
     }
-    console.log(`Art Exb found with _id : ${req.params.id}`);
-    console.log(err + fair);
-    return res.render("fests/artExbPage", { fair: fair });
   });
 };
 
