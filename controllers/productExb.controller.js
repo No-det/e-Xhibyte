@@ -84,7 +84,7 @@ exports.addApplicantPE = (req, res, next) => {
     })  
 }
 
-exports.viewPEById = (req, res, next) => {
+/*exports.viewPEById = (req, res, next) => {
     ProductExb.findById({_id : req.params.id}, (fairs , err) => {
         if(err) {
             console.log(err);
@@ -93,6 +93,9 @@ exports.viewPEById = (req, res, next) => {
         console.log('Product Exb found');
         return res.render('fests/productExb',{fairs:fairs})
     })
+}*/
+exports.viewPEById = (req, res) => {
+    res.render('fests/productExbPage')
 }
 
 exports.viewUpProductExb = (req, res, next) => {

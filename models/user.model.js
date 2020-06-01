@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
-// const BookFair = require('./bookFair.model');
+// const BookExb = require('./bookExb.model');
 // const ArtExb = require('./artExb.model');
 // const ProductExb = require('./productExb.model');
 
@@ -11,7 +11,7 @@ let applicantsSchema =mongoose.Schema({
     desc: {type : String},
 })
 
-let bookFairSchema = mongoose.Schema({
+let bookExbSchema = mongoose.Schema({
     name : { type : String },
     organizer : { type : String },
     location : { type : String },
@@ -60,14 +60,14 @@ let userSchema = mongoose.Schema({
     passwordResetToken : { type : String },
     resetPasswordExpires : { type : Date },
     imgUrl : {type : String , default : 'defaultProPic.png'},
-    bookFair: [bookFairSchema],
+    bookExb: [bookExbSchema],
     artExb : [artExbSchema],
     productExb : [productExbSchema],
 });
 
 userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('applicants',applicantsSchema);
-module.exports = mongoose.model('bookFair',bookFairSchema);
+module.exports = mongoose.model('bookExb',bookExbSchema);
 module.exports = mongoose.model('artExb',artExbSchema);
 module.exports = mongoose.model('productExb',productExbSchema);
 module.exports = mongoose.model('User',userSchema);

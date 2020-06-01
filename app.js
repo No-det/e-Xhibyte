@@ -62,7 +62,7 @@ passport.deserializeUser(User.deserializeUser());
 const adminRoute = require('./routes/admin.route');
 const userRoute = require("./routes/user.route");
 
-const bookFairRoute = require('./routes/bookFair.route');
+const bookExbRoute = require('./routes/bookExb.route');
 const artExbRoute = require('./routes/artExb.route');
 const productExbRoute = require('./routes/productExb.route');
 
@@ -71,7 +71,7 @@ const productExbRoute = require('./routes/productExb.route');
 server.use('/polisaanam', middleWares.hasAdminPrivs, adminRoute);
 server.use('/profile', middleWares.isLoggedIn , userRoute);
 
-server.use('/bookFair', middleWares.isLoggedIn, bookFairRoute);
+server.use('/bookExb', middleWares.isLoggedIn, bookExbRoute);
 server.use('/artExb', middleWares.isLoggedIn, artExbRoute);
 server.use('/productExb', middleWares.isLoggedIn, productExbRoute);
 
@@ -88,12 +88,17 @@ server.get('/' , (req,res) => {
     return res.render('index')
 })
 
+server.get('/info', (req, res) => {
+  res.render('info')
+})
+
 server.get('/home' , middleWares.isLoggedIn , (req,res) => {
     res.render('home',{user:req.user})
 })
 
 
 
+// @Ajal, add func to remove dp.
                 //Uploading profile Image
                 //Path to save files
 const upload = multer({dest : __dirname+'/uploads/'});
@@ -139,4 +144,4 @@ server.get('/upload' ,(req,res) => {
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => console.log(`Listening to PORT: ${PORT}`));
+server.listen(PORT, () => console.log(`http://localhost:${PORT}`));
