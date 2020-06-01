@@ -11,10 +11,10 @@ const ArtExb = require('../models/artExb.model');
     })
 }*/
 exports.viewArtExb = (req, res) => {
-    User.find({}, function(err, users) {
+    User.find({}, (err, users) => {
         var userList = [];
         var n = 0;
-        users.forEach(function(user) {
+        users.forEach(user => {
           userList[n] = user;
           n++;
         });
@@ -85,13 +85,13 @@ exports.addApplicantAE = (req, res, next) => {
 }
 
 exports.viewAEById = (req, res, next) => {
-    ArtExb.findById({_id : req.params.id}, (fairs , err) => {
+    User.find({artExb: {_id : req.params.id}}, (err, fair) => {
         if(err) {
             console.log(err);
             return next(err);
         }
-        console.log('Art Exb found');
-        return res.render('fests/artExb',{fairs:fairs})
+        console.log(`Art Exb found with _id : ${req.params.id}`);
+        return res.render('fests/artExbPage',{fair:fair})
     })
 }
 

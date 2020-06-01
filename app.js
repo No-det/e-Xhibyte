@@ -97,6 +97,7 @@ server.get('/home' , middleWares.isLoggedIn , (req,res) => {
 })
 
 
+
 // @Ajal, add func to remove dp.
                 //Uploading profile Image
                 //Path to save files
@@ -143,4 +144,4 @@ server.get('/upload' ,(req,res) => {
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => console.log(`Listening to PORT: ${PORT}`));
+server.listen(PORT, () => console.log(`http://localhost:${PORT}`));

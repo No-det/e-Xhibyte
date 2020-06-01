@@ -100,15 +100,18 @@ exports.addApplicantBE = (req, res, next) => {
     })  
 }
 
-exports.viewBEById = (req, res, next) => {
+/*exports.viewBEById = (req, res, next) => {
     BookExb.findById({_id : req.params.id}, (fairs , err) => {
         if(err) {
             console.log(err);
             return next(err);
         }
         console.log('Book exb found');
-        return res.render('fests/bookExb',{fairs:fairs})
+        return res.render('fests/bookExbPage',{fairs:fairs})
     })
+}*/
+exports.viewBEById = (req, res) => {
+    res.render('fests/bookExbPage');
 }
 
 exports.viewUpBookExb = (req, res, next) => {

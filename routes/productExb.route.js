@@ -6,7 +6,7 @@ const productExbController = require('../controllers/productExb.controller');
 
 
 router.get('/', productExbController.viewProductExb); // View all live PE
-//router.get('/:id', productExbController.viewPEById); // View all PE by Id
+router.get('/productExbPage', productExbController.viewPEById); // View all PE by Id
 //router.get('/upcoming', productExbController.viewUpProductExb); // View upcoming PE
 
 router.get('/add', productExbController.viewProductExbForm); // View PE add form

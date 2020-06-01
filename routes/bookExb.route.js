@@ -6,8 +6,8 @@ const bookExbController = require('../controllers/bookExb.controller');
 
 
 router.get('/', bookExbController.viewBookExb); // View all live BE
-//router.get('/:id', bookFairController.viewBFById); // View all BE by Id
-//router.get('/upcoming', bookFairController.viewUpBookFairs); // View upcoming BE
+router.get('/bookExbPage', bookExbController.viewBEById); // View all BE by Id
+//router.get('/upcoming', bookExbController.viewUpBookExb); // View upcoming BE
 
 router.get('/add', bookExbController.viewBookExbForm); // View BE add form
 router.post('/add', bookExbController.addBookExb); // Add new BE
