@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <title>e-Xhibyte | Application</title>
+  </head>
+  <body>
+    <div class="login-background"></div>
+    <div
+      class="signup-box"
+      style="padding-bottom: none !important; height: 750px;"
+    >
+      <div class="login-header">
+        <h1>Application</h1>
+      </div>
+      <br />
+      <div class="signup-info">
+        <form action="/artExb/addApplicant/<%= exb._id %>" method="POST">
+          <div class="input-container">
+            <p>Name of Applicant:</p>
+            <input type="text" name="appName" placeholder="Enter your name" />
+          </div>
+          <div class="input-container">
+            <p>Name of your Work:</p>
+            <input
+              type="text"
+              name="itemName"
+              placeholder="Enter the Name of your Work"
+            />
+          </div>
+          <div class="input-container">
+            <p>Description:</p>
+            <input
+              type="text"
+              name="description"
+              placeholder="Enter your location"
+            />
+          </div>
+          <div class="input-container">
+            <input
+              type="file"
+              accept="image/*"
+              name="file"
+              id="file"
+              onchange="loadFile(event)"
+              class="inputfile"
+            />
+            Add an Image: &nbsp;
+            <label for="file">Choose a file</label><br />
+
+            <div class="dp-output">
+              <img id="output" />
+            </div>
+          </div>
+          <input type="submit" value="Submit" style="margin-bottom: 0;" />
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/d2a549144d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../assets/js/app.js"></script>
+  </body>
+</html>

@@ -21,16 +21,16 @@
       </div>
       <br />
       <div class="signup-info">
-        <form action="/addApplicant" method="POST">
+        <form action="/artExb/addApplicant/<%= exb._id %>" method="POST">
           <div class="input-container">
-            <p>Applicant</p>
-            <input type="text" name="applicant" placeholder="Enter your name" />
+            <p>Name of Applicant:</p>
+            <input type="text" name="appName" placeholder="Enter your name" />
           </div>
           <div class="input-container">
             <p>Name of your Work:</p>
             <input
               type="text"
-              name="work"
+              name="itemName"
               placeholder="Enter the Name of your Work"
             />
           </div>

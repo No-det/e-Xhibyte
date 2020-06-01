@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const ProductExb = require("../models/productExb.model");
+const Applicant = require("../models/applicant.model");
 
 exports.viewProductExb = (req, res) => {
   ProductExb.find({}, (err, exbs) => {
@@ -53,40 +54,44 @@ exports.deleteProductExb = (req, res) => {
   });
 };
 
-exports.viewApplicantForm = (req, res) => {
-  res.render("fests/addApplicant");
+exports.viewApplicantForm = async (req, res, next) => {
+  const exb = await ProductExb.findById({ _id: req.params.id });
+  if (exb) {
+    return res.render("fests/addApplicantPE", { exb : exb })
+  }
+  console.log(err)
+  return next(err)
 };
 
 exports.addApplicantPE = (req, res, next) => {
-  ProductExb.findById({ _id: req.params.id }, (productExb, err) => {
-    if (err) {
-      console.log(err);
-      return next(err);
-    }
-    let newApplicant = new applicant({});
+
+    let newApplicant = new Applicant({
+      userId: req.user.id,
+      exbId: req.params.id,
+      appName: req.body.appName,
+      itemName: req.body.itemName,
+      itemDesc: req.body.description
+    });
+
     newApplicant.save((err) => {
       if (err) {
         console.log(err);
         return next(err);
       }
       console.log("Applicant added to Product Exb");
-      return res.redirect("/productExb/:id");
+      return res.redirect("/productExb");
     });
-  });
+
 };
 
-/*exports.viewPEById = (req, res, next) => {
-    ProductExb.findById({_id : req.params.id}, (fairs , err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        console.log('Product Exb found');
-        return res.render('fests/productExb',{fairs:fairs})
-    })
-}*/
-exports.viewPEById = (req, res) => {
-  res.render("fests/productExbPage");
+exports.viewPEById = async (req, res, next) => {
+  const fair = await ProductExb.findById({ _id: req.params.id });
+  if (fair) {
+    console.log(`Product exb view : ${fair.name}`);
+    return res.render("fests/productExbPage", { fair: fair });
+  }
+  console.log(err);
+  return next(err);
 };
 
 exports.viewUpProductExb = (req, res, next) => {

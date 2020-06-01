@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 let applicantSchema = new mongoose.Schema({
     userId : { type : String },
@@ -8,3 +9,6 @@ let applicantSchema = new mongoose.Schema({
     itemDesc : { type : String },
     imgUrl : { type : String, default : "defaultItemPic.png" }
 });
+
+
+module.exports = mongoose.model("applicant",applicantSchema);

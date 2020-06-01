@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const ArtExb = require("../models/artExb.model");
+const Applicant = require("../models/applicant.model");
 
 /*exports.viewArtExb = (req, res, next) => {
     ArtExb.find({isLive : true} ,(fairs,err) => {
@@ -42,9 +43,10 @@ exports.addArtExb = (req, res, next) => {
       console.log(err);
       return next(err);
     }
-    console.log("New art exb added");
+    console.log("New art exb added.");
     return res.redirect("/artExb");
   });
+
 };
 
 exports.viewDeletePage = (req, res) => {
@@ -62,32 +64,40 @@ exports.deleteArtExb = (req, res) => {
   });
 };
 
-exports.viewApplicantForm = (req, res) => {
-  res.render("fests/addApplicant");
+exports.viewApplicantForm = async (req, res, next) => {
+  const exb = await ArtExb.findById({ _id: req.params.id });
+  if (exb) {
+    return res.render("fests/addApplicantAE", { exb : exb })
+  }
+  console.log(err)
+  return next(err)
 };
 
 exports.addApplicantAE = (req, res, next) => {
-  ArtExb.findById({ _id: req.params.id }, (artExb, err) => {
-    if (err) {
-      console.log(err);
-      return next(err);
-    }
-    let newApplicant = new applicant({});
+
+    let newApplicant = new Applicant({
+      userId: req.user.id,
+      exbId: req.params.id,
+      appName: req.body.appName,
+      itemName: req.body.itemName,
+      itemDesc: req.body.description
+    });
+
     newApplicant.save((err) => {
       if (err) {
         console.log(err);
         return next(err);
       }
       console.log("Applicant added to Art Exb");
-      return res.redirect("/artExb/:id");
+      return res.redirect("/artExb");
     });
-  });
+
 };
 
 exports.viewAEById = async (req, res, next) => {
   const fair = await ArtExb.findById({ _id: req.params.id });
   if (fair) {
-    console.log(fair);
+    console.log(`Art exb view : ${fair.name}`);
     return res.render("fests/artExbPage", { fair: fair });
   }
   console.log(err);
