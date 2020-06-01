@@ -1,51 +1,5 @@
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
-// const BookExb = require('./bookExb.model');
-// const ArtExb = require('./artExb.model');
-// const ProductExb = require('./productExb.model');
-
-let applicantsSchema = mongoose.Schema({
-  name: { type: String },
-  workName: { type: String },
-  workImgUrl: { type: String },
-  desc: { type: String },
-});
-
-let bookExbSchema = mongoose.Schema({
-  name: { type: String },
-  organizer: { type: String },
-  location: { type: String },
-  startDate: { type: Date },
-  endDate: { type: Date },
-  imgUrl: { type: String, default: "defaultEventPic.png" },
-  status: { type: String, default: "Upcoming" },
-  isLive: { type: Boolean, default: false },
-  applicants: [applicantsSchema],
-});
-
-let artExbSchema = mongoose.Schema({
-  name: { type: String },
-  organizer: { type: String },
-  location: { type: String },
-  startDate: { type: Date },
-  endDate: { type: Date },
-  imgUrl: { type: String, default: "defaultEventPic.png" },
-  status: { type: String, default: "Upcoming" },
-  isLive: { type: Boolean, default: false },
-  applicants: [applicantsSchema],
-});
-
-let productExbSchema = mongoose.Schema({
-  name: { type: String },
-  organizer: { type: String },
-  location: { type: String },
-  startDate: { type: Date },
-  endDate: { type: Date },
-  imgUrl: { type: String, default: "defaultEventPic.png" },
-  status: { type: String, default: "Upcoming" },
-  isLive: { type: Boolean, default: false },
-  applicants: [applicantsSchema],
-});
 
 let userSchema = mongoose.Schema({
   name: { type: String },
@@ -55,19 +9,16 @@ let userSchema = mongoose.Schema({
   email: { type: String },
   password: { type: String },
   isAdmin: { type: Boolean, default: false },
-  registeringToken: { type: Number },
   isActive: { type: Boolean, default: false },
+  registeringToken: { type: Number },
   passwordResetToken: { type: String },
   resetPasswordExpires: { type: Date },
   imgUrl: { type: String, default: "defaultProPic.png" },
-  bookExb: [bookExbSchema],
-  artExb: [artExbSchema],
-  productExb: [productExbSchema],
+  bookExbId: [{ type: String }],
+  artExbId: [{ type: String }],
+  productExbId: [{ type: String }],
+  exbItemId: [{ type: String }],
 });
 
 userSchema.plugin(passportLocalMongoose);
-exports.Applicants = mongoose.model("applicants", applicantsSchema);
-exports.BookExb = mongoose.model("bookExb", bookExbSchema);
-exports.ArtExb = mongoose.model("artExb", artExbSchema);
-exports.ProductExb = mongoose.model("productExb", productExbSchema);
-exports.User = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);

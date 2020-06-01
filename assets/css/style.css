@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Pattaya&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -27,9 +28,8 @@ body {
   padding-top: -20px;
 }
 .logo h1 {
-  text-shadow: 1px 1px grey;
-  font-family: 'Audiowide', cursive;
-  letter-spacing: 3px;
+  font-family: "Pattaya", sans-serif;
+  font-weight: 400;
 }
 .logo a {
   text-decoration: none;
@@ -285,16 +285,16 @@ input[type="password"] {
 .input-container small {
   color: red;
 }
-.thanku{
+.thanku {
   margin-top: 25vh;
 }
-.thanku p{
+.thanku p {
   color: rgb(248, 87, 235);
   text-shadow: 3px 3px rgb(238, 175, 231);
-  font-family: 'Audiowide', cursive;
+  font-family: "Audiowide", cursive;
   font-size: 100px;
 }
-.thanku a{
+.thanku a {
   text-decoration: none;
 }
 /* OTP Page */
@@ -935,19 +935,19 @@ input[type="password"] {
 }
 
 /* Choose file button styling */
-.inputfile{
+.inputfile {
   height: 0.1px;
   width: 0.1px;
   opacity: 0;
   overflow: hidden;
 }
-.inputfile+label{
+.inputfile + label {
   background-color: white;
   border: 1px solid rgb(248, 87, 235);
   border-radius: 20px;
   padding: 1px 10px;
 }
-.inputfile+label:hover{
+.inputfile + label:hover {
   cursor: pointer;
   border: 1.8px solid rgb(248, 87, 235);
 }
@@ -1054,7 +1054,7 @@ input[type="password"] {
   font-size: 18px;
 }
 
-.adm-button{
+.adm-button {
   padding: 10px;
   font-size: 16px;
   color: white;
@@ -1070,7 +1070,7 @@ input[type="password"] {
   font-size: 18px;
   border-radius: 10px;
 }
-.adm-button:hover{
+.adm-button:hover {
   color: rgb(248, 87, 235);
   border: 2px solid rgb(248, 87, 235);
   background-color: white;

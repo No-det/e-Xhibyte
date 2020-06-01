@@ -11,15 +11,15 @@ const { ProductExb } = require("../models/productExb.model");
     })
 }*/
 exports.viewProductExb = (req, res) => {
-  User.find({}, function (err, users) {
-    var userList = [];
+  ProductExb.find({}, (err, exbs) => {
+    var exbList = [];
     var n = 0;
-    users.forEach(function (user) {
-      userList[n] = user;
+    exbs.forEach((exb) => {
+      exbList[n] = exb;
       n++;
     });
 
-    res.render("fests/productExb", { userList: userList });
+    res.render("fests/productExb", { exbList: exbList });
   });
 };
 
@@ -28,25 +28,23 @@ exports.viewProductExbForm = (req, res) => {
 };
 
 exports.addProductExb = (req, res, next) => {
-  let newProductExb = {
+  let newProductExb = new ProductExb({
+    userId: req.user.id,
     name: req.body.name,
     organizer: req.body.organiser,
     location: req.body.location,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
-  };
-  User.findByIdAndUpdate(
-    { _id: req.user.id },
-    { $push: { productExb: newProductExb } },
-    (err) => {
-      if (err) {
-        console.log("Error in adding product exb.");
-        return next(err);
-      }
-      console.log("New product exb added.");
-      return res.redirect("/productExb");
+  });
+
+  newProductExb.save((err) => {
+    if (err) {
+      console.log(err);
+      return next(err);
     }
-  );
+    console.log("New product exb added");
+    return res.redirect("/productExb");
+  });
 };
 
 exports.viewDeletePage = (req, res) => {
