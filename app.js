@@ -26,7 +26,7 @@ server.set("view engine","ejs");
 server.use("/assets/css", express.static(__dirname + "/assets/css"));
 server.use("/assets/img", express.static(__dirname + "/assets/img"));
 server.use("/uploads", express.static(__dirname + "/uploads"));
-server.use("/assets/js", express.static(__dirname + "/assets/js"));
+server.use("/assets/js", express.static(__dirname + "/assets/js"))
 
 //connect to mongo db
 mongoose.connect(
