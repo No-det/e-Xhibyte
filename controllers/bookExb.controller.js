@@ -11,15 +11,15 @@ const BookExb = require('../models/bookExb.model');
     })
 } */
 exports.viewBookExb = (req, res) => {
-    User.find({}, function(err, users) {
-        var userList = [];
+    BookExb.find({}, (err, exbs) => {
+        var exbList = [];
         var n = 0;
-        users.forEach(function(user) {
-          userList[n] = user;
+        exbs.forEach(exb => {
+          exbList[n] = exb;
           n++;
         });
     
-        res.render('fests/bookExb', {userList : userList});
+        res.render('fests/bookExb', {exbList : exbList});
       });
 }
 
@@ -28,21 +28,23 @@ exports.viewBookExbForm = (req, res) => {
 }
 
 exports.addBookExb = (req, res, next) => {
-    let newBookExb = {
-        name : req.body.name,
-        organizer : req.body.organiser,
-        location : req.body.location,
-        startDate : req.body.startDate,
-        endDate : req.body.endDate,
-    }
-    User.findByIdAndUpdate({_id : req.user.id}, {$push: {bookExb : newBookExb}}, err => {
-       if(err) {
-           console.log('Error in adding book exb.');
-           return next(err);
-       }
-       console.log('New book exb added.');
-       return res.redirect('/bookExb');
-   });
+    let newBookExb = new BookExb ({
+        userId: req.user.id,
+        name: req.body.name,
+        organizer: req.body.organiser,
+        location: req.body.location,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+    });
+
+    newBookExb.save(err => {
+        if(err) {
+          console.log(err);
+          return next(err);
+        }
+        console.log('New book exb added');
+        return res.redirect('/bookExb');
+      });
 }
 
 exports.viewDeletePage = (req, res) => {

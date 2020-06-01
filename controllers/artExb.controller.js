@@ -11,15 +11,15 @@ const ArtExb = require("../models/artExb.model");
     })
 }*/
 exports.viewArtExb = (req, res) => {
-  User.find({}, (err, users) => {
-    var userList = [];
+  ArtExb.find({}, (err, exbs) => {
+    var exbList = [];
     var n = 0;
-    users.forEach((user) => {
-      userList[n] = user;
+    exbs.forEach((exb) => {
+      exbList[n] = exb;
       n++;
     });
 
-    res.render("fests/artExb", { userList: userList });
+    res.render("fests/artExb", { exbList: exbList });
   });
 };
 
@@ -28,25 +28,25 @@ exports.viewArtExbForm = (req, res) => {
 };
 
 exports.addArtExb = (req, res, next) => {
-  let newArtExb = {
+
+  let newArtExb = new ArtExb ({
+    userId: req.user.id,
     name: req.body.name,
     organizer: req.body.organiser,
     location: req.body.location,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
-  };
-  User.findByIdAndUpdate(
-    { _id: req.user.id },
-    { $push: { artExb: newArtExb } },
-    (err) => {
-      if (err) {
-        console.log("Error in adding art exb.");
-        return next(err);
-      }
-      console.log("New art exb added.");
-      return res.redirect("/artExb");
+  });
+
+  newArtExb.save(err => {
+    if(err) {
+      console.log(err);
+      return next(err);
     }
-  );
+    console.log('New art exb added');
+    return res.redirect('/artExb');
+  });
+
 };
 
 exports.viewDeletePage = (req, res) => {
@@ -87,13 +87,13 @@ exports.addApplicantAE = (req, res, next) => {
 };
 
 exports.viewAEById = (req, res, next) => {
-  User.find({ artExb: { _id: req.params.id } }, (fair, err) => {
+  ArtExb.find({ _id: req.params.id }, (err, fair) => {
     if (err) {
       console.log(err);
       return next(err);
     }
     console.log(`Art Exb found with _id : ${req.params.id}`);
-    console.log(err + fair);
+    console.log(fair.name);
     return res.render("fests/artExbPage", { fair: fair });
   });
 };
