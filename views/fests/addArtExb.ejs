@@ -45,11 +45,17 @@
           </div>
           <div class="input-container">
             <p>Start Date:</p>
-            <input
-              type="text"
-              name="startDate"
-              placeholder="Enter starting date"
-            />
+            <div class="date-picker">
+              <div class="selected-date"></div>
+              <div class="dates">
+                <div class="month">
+                  <div class="prev-mth arrows">&lt;</div>
+                  <div class="mth"></div>
+                  <div class="next-mth arrows">&gt;</div>
+                </div>
+                <div class="days"></div>
+              </div>
+            </div>
           </div>
           <div class="input-container">
             <p>End Date:</p>
@@ -57,6 +63,7 @@
               type="text"
               name="endDate"
               placeholder="When the program ends"
+              id="endSelectedDate"
             />
           </div>
           <input type="submit" value="Add" style="width: 100%;" />
