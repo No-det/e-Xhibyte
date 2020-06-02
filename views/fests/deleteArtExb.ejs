@@ -8,7 +8,7 @@
       href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
     <title>e-Xhibyte | Delete Art Exhibition</title>
   </head>
 
@@ -20,8 +20,8 @@
         </div>
         <br/>
         <div class="delete-info">
-          <p>Are you sure that you want to delete the Art Exhibition ?</p><br/>
-          <form action="/artExb/delete" method="POST">
+          <p>Are you sure that you want to delete the <%= exb.name %> ?</p><br/>
+          <form action="/artExb/delete/<%= exb._id %>" method="POST">
           <input type="submit" name="delete" value="Delete"><br/>
           </form>
           <div class="delete-info-can"><a href="/profile">Cancel</a><br /></div>

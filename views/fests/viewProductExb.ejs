@@ -30,37 +30,42 @@
                 <h3><a href="/viewProductExb">Exhibition Works</a></h3>
             </div>
         </div>
-        <div class="news-items">
-            <div class="news-item">
+        
+        
+        <% items.map(item => { %>
+            <div class="news-items">
+              <div class="news-item">
                 <div class="item-img">
-                    <img src="../../assets/img/exb-item-img.jpg" alt="">
+                  <img src="../../uploads/<%= exb.imgUrl %>" alt="" />
                 </div>
                 <div class="item-text">
-                    <div class="event-name">
-                        <h2>Applicant Work Name</h2>
+                  <div class="event-name">
+                    <h2><%= item.itemName %></h2>
+                  </div>
+                  <br />
+                  <div class="event-place">
+                    <p><%= item.appName %></p>
+                  </div>
+                  <br />
+                  <div class="event-duration">
+                    <p>
+                      Description : <%= item.itemDesc %>
+                    </p>
+                  </div>
+                  <br />
+                  <br />
+                  <br />
+                  <div class="status-url-wrapper">
+                    <div class="like-url">
+                      <a href="#">👍</a>
                     </div>
-                    <br/>
-                    <div class="event-place">
-                        <p>Applicant Name</p>
-                    </div>
-                    <br/>
-                    <div class="event-duration">
-                        <p>Description : 
-                            abcd efgh ijkl mnop qrst uvwx yz abcd efgh ijkl mnop qrst uvwx yz
-                            abcd efgh ijkl mnop qrst uvwx yz abcd efgh ijkl mnop qrst uvwx yz
-                            abcd efgh ijkl mnop qrst uvwx yz abcd efgh ijkl mnop qrst uvwx yz
-                        </p>
-                    </div>
-                    <br/> <br/>
-                    <br/>
-                    <div class="status-url-wrapper">
-                        <div class="like-url">
-                            <a href="#">👍</a>
-                        </div>
-                    </div>                   
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
+        <% }) %>
+
+
     </div>
 
     <div class="footer">
