@@ -39,7 +39,6 @@ exports.addArtExb = (req, res, next) => {
     console.log("New art exb added.");
     return res.redirect("/artExb");
   });
-
 };
 
 exports.viewDeletePage = (req, res) => {
@@ -60,42 +59,42 @@ exports.deleteArtExb = (req, res) => {
 exports.viewApplicantForm = async (req, res, next) => {
   const exb = await ArtExb.findById({ _id: req.params.id });
   if (exb) {
-    return res.render("fests/addApplicantAE", { exb : exb })
+    return res.render("fests/addApplicantAE", { exb: exb });
   }
-  console.log(err)
-  return next(err)
+  console.log(err);
+  return next(err);
 };
 
 exports.addApplicantAE = (req, res, next) => {
+  let newApplicant = new Applicant({
+    userId: req.user.id,
+    exbId: req.params.id,
+    appName: req.body.appName,
+    itemName: req.body.itemName,
+    itemDesc: req.body.description,
+  });
 
-    let newApplicant = new Applicant({
-      userId: req.user.id,
-      exbId: req.params.id,
-      appName: req.body.appName,
-      itemName: req.body.itemName,
-      itemDesc: req.body.description
-    });
-
-    newApplicant.save((err) => {
-      if (err) {
-        console.log(err);
-        return next(err);
-      }
-      console.log("Applicant added to Art Exb");
-      return res.redirect("/artExb");
-    });
-
+  newApplicant.save((err) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    console.log("Applicant added to Art Exb");
+    return res.redirect("/artExb");
+  });
 };
 
 exports.viewAEById = async (req, res, next) => {
   const fair = await ArtExb.findById({ _id: req.params.id });
   if (fair) {
     console.log(`Art exb view : ${fair.name}`);
-    Applicant.find({ exbId : fair._id }, (err, items) => {
-      console.log(items)
-      return res.render("fests/viewArtExb", { fair: fair }, { items: items} );
-    });
+    const items = await Applicant.find({ exbId: fair._id });
+    if (items) {
+      console.log(items);
+      return res.render("fests/viewArtExb", { fair: fair, items: items });
+    }
   }
+  const err = new Error("Fair not found");
   console.log(err);
   return next(err);
 };
