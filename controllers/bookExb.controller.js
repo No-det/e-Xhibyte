@@ -97,7 +97,7 @@ exports.viewBEById = async (req, res, next) => {
   const fair = await BookExb.findById({ _id: req.params.id });
   if (fair) {
     console.log(`Book exb view : ${fair.name}`);
-    return res.render("fests/bookExbPage", { fair: fair });
+    return res.render("fests/viewBookExb", { fair: fair });
   }
   console.log(err);
   return next(err);

@@ -12,14 +12,7 @@ const Applicant = require("../models/applicant.model");
     })
 }*/
 exports.viewArtExb = (req, res) => {
-  ArtExb.find({}, (err, exbs) => {
-    var exbList = [];
-    var n = 0;
-    exbs.forEach((exb) => {
-      exbList[n] = exb;
-      n++;
-    });
-
+  ArtExb.find({}, (err, exbList) => {
     res.render("fests/artExb", { exbList: exbList });
   });
 };
@@ -98,7 +91,10 @@ exports.viewAEById = async (req, res, next) => {
   const fair = await ArtExb.findById({ _id: req.params.id });
   if (fair) {
     console.log(`Art exb view : ${fair.name}`);
-    return res.render("fests/artExbPage", { fair: fair });
+    Applicant.find({ exbId : fair._id }, (err, items) => {
+      console.log(items)
+      return res.render("fests/viewArtExb", { fair: fair }, { items: items} );
+    });
   }
   console.log(err);
   return next(err);
