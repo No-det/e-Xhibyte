@@ -1,46 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <title>e-Xhibyte | New Book Exhibition</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="login-background"></div>
     <div class="signup-box">
-        <div class="login-header">
-            <h1>New Book Exhibition</h1>
-        </div>
-        <br/>
-        <div class="signup-info">
-            <form action="/bookExb/add" method="POST">
-                <div class="input-container">
-                    <p>Name:</p>
-                    <input type="text" name="name" placeholder="Enter Name of the Book Exhibition">    
-                </div>
-                <div class="input-container">
-                    <p>Organiser(s):</p>
-                    <input type="text" name="organiser" placeholder="Enter the name of organiser/organisation">                
-                </div>
-                <div class="input-container">
-                    <p>Location:</p>
-                    <input type="text" name="location" placeholder="Enter location of Exhibition">                
-                </div>
-                <div class="input-container">
-                    <p>Start Date:</p>
-                    <input type="text" name="startDate" placeholder="Enter starting date">                
-                </div>
-                <div class="input-container">    
-                    <p>End Date:</p> 
-                    <input type="text" name="endDate" placeholder="When the program ends" >
-                </div>  
-                <input type="submit" value="Add" style="width: 100%;">
-            </form>
-        </div>
+      <div class="login-header">
+        <h1>New Book Exhibition</h1>
+      </div>
+      <br />
+      <div class="signup-info">
+        <form action="/bookExb/add" method="POST">
+          <div class="input-container">
+            <p>Name:</p>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter Name of the Book Exhibition"
+            />
+          </div>
+          <div class="input-container">
+            <p>Organiser(s):</p>
+            <input
+              type="text"
+              name="organiser"
+              placeholder="Enter the name of organiser/organisation"
+            />
+          </div>
+          <div class="input-container">
+            <p>Location:</p>
+            <input
+              type="text"
+              name="location"
+              placeholder="Enter location of Exhibition"
+            />
+          </div>
+          <div class="input-container" name="startDate">
+            <p>Start Date:</p>
+            <input type="date" name="startDate" id="startSelectedDate" />
+          </div>
+          <div class="input-container">
+            <p>End Date:</p>
+            <input type="date" name="endDate" id="endSelectedDate" />
+          </div>
+          <input type="submit" value="Add" style="width: 100%;" />
+        </form>
+      </div>
     </div>
-    <script src="https://kit.fontawesome.com/d2a549144d.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/d2a549144d.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="../assets/js/app.js"></script>
-</body>
+  </body>
 </html>
