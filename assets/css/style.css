@@ -769,7 +769,14 @@ input[type="password"] {
   padding: 30px;
   width: 70%;
 }
-.hero-details h3 {
+.exhibition-details {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  width: 70%;
+}
+.hero-details h3,
+.exhibition-details h3 {
   font-size: 24px;
   font-weight: 600;
   color: rgb(231, 69, 231);
@@ -816,21 +823,43 @@ input[type="password"] {
   grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid rgb(243, 73, 243);
 }
+.exhibition-detail {
+  display: flex;
+  flex-direction: column;
+}
+.exhibition-detail div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 50px;
+}
 
 .hero-detail p {
   padding: 20px 0;
   text-align: left;
   color: rgb(80, 80, 80);
 }
+.exhibition-detail p {
+  padding: 20px 0;
+  text-align: left;
+  color: rgb(80, 80, 80);
+  border-bottom: 1px solid rgb(243, 73, 243);
+}
+.exhibition-detail div h4 {
+  color: rgb(80, 80, 80);
+}
 
-.hero-detail a {
+.hero-detail a,
+.exhibition-detail a {
   text-decoration: none;
   background-color: rgb(189, 63, 63);
   padding: 5px 10px;
   color: white;
   border-radius: 2px;
+  border: 1px solid transparent;
 }
-.hero-detail a:hover {
+.hero-detail a:hover,
+.exhibition-detail a:hover {
   color: rgb(189, 63, 63);
   background-color: white;
   border: 1px solid rgb(189, 63, 63);
@@ -984,8 +1013,8 @@ input[type="password"] {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
-  height: 350px;
+  min-width: 400px;
+  min-height: 350px;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   background-color: white;
@@ -1013,31 +1042,44 @@ input[type="password"] {
 }
 .delete-info input[type="submit"] {
   text-decoration: none;
-  background-color: rgb(189, 63, 63);
+  background-color: rgb(214, 31, 31);
   padding: 15px 25px;
-  margin-bottom: 15px;
+  margin: 20px 30px;
   color: white;
   border-radius: 2px;
   border: none;
   cursor: pointer;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid transparent;
 }
 .delete-info input[type="submit"]:hover {
   color: rgb(189, 63, 63);
   background-color: white;
-  border: 1px solid rgb(189, 63, 63);
+  border: 1px solid rgb(214, 31, 31);
+  font-weight: 500;
 }
 
 .delete-info-can a {
   text-decoration: none;
-  color: gray;
   border-radius: 2px;
-  /* float: left; */
+  padding: 10px 20px;
+  width: 100px;
+  height: 48px;
+  background-color: rgb(230, 36, 213);
+  color: white;
+  border: 1px solid rgb(230, 36, 213);
+  margin: 20px 30px;
+  font-weight: 500;
 }
 .delete-info-can a:hover {
   color: rgb(248, 87, 235);
   background-color: white;
 }
-
+.delete-info div {
+  display: flex;
+  justify-content: center;
+}
 /*************ADMIN PAGES**************/
 
 .admin-background {
