@@ -999,6 +999,14 @@ input[type="password"] {
   text-align: center;
   color: red;
 }
+
+.delete-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .delete-info p {
   font-weight: bold;
   font-size: 18px;
@@ -1007,9 +1015,11 @@ input[type="password"] {
   text-decoration: none;
   background-color: rgb(189, 63, 63);
   padding: 15px 25px;
+  margin-bottom: 15px;
   color: white;
   border-radius: 2px;
   border: none;
+  cursor: pointer;
 }
 .delete-info input[type="submit"]:hover {
   color: rgb(189, 63, 63);
@@ -1018,12 +1028,10 @@ input[type="password"] {
 }
 
 .delete-info-can a {
-  margin-right: 50px;
   text-decoration: none;
-  padding: 10px 20px;
   color: gray;
   border-radius: 2px;
-  float: left;
+  /* float: left; */
 }
 .delete-info-can a:hover {
   color: rgb(248, 87, 235);
