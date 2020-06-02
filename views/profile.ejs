@@ -52,22 +52,42 @@
           <div class="hero-detail">
             <p>Email Id:</p>
             <p><%= user.email %></p>
+          </div><br/><br/>
+
+          <div class="hero-button-wrapper">
+            <div class="hero-details-edit">
+              <a href="/profile/edit">Edit Details</a>
+            </div>
+            <div class="hero-details-delete">
+              <a href="/profile/delete">Delete Account</a>
+            </div>
           </div>
+
+          <br/><br/><br/>
+            <h3>Events Organised :</h3>
           <div class="hero-detail">
-            <p>Events Organised:</p>
+            <p>Art Exhibtions</p>
             <% artExb.map(art => {%>
-              <p><%= art.name %></p>
+              <p><%= art.name %> &nbsp; &nbsp; &nbsp; &nbsp;
+              <a href="/artExb/delete/<%= art._id %>">Delete</a></p>
             <% }) %>
           </div>
-        </div>
-        <div class="hero-button-wrapper">
-          <div class="hero-details-edit">
-            <a href="/profile/edit">Edit Details</a>
+          <div class="hero-detail">
+            <p>Book Exhibtions</p>
+            <% bookExb.map(book => {%>
+              <p><%= book.name %> &nbsp; &nbsp; &nbsp; &nbsp;
+              <a href="/bookExb/delete/<%= book._id %>">Delete</a></p>
+            <% }) %>
           </div>
-          <div class="hero-details-delete">
-            <a href="/profile/delete">Delete Account</a>
+          <div class="hero-detail">
+            <p>Product Exhibtions</p>
+            <% productExb.map(product => {%>
+              <p><%= product.name %> &nbsp; &nbsp; &nbsp; &nbsp;
+              <a href="/prodExb/delete/<%= product._id %>">Delete</a></p>
+            <% }) %>
           </div>
-        </div>
+        </div><br/>
+
       </div>
     </div>
     <div class="footer">

@@ -2,24 +2,8 @@ const User = require("../models/user.model");
 const BookExb = require("../models/bookExb.model");
 const Applicant = require("../models/applicant.model");
 
-/*exports.viewBookExb = (req, res, next) => {
-    BookExb.find({isLive : true}, (fairs, err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        return res.render('fests/bookExb' , {fairs:fairs});
-    })
-} */
 exports.viewBookExb = (req, res) => {
-  BookExb.find({}, (err, exbs) => {
-    var exbList = [];
-    var n = 0;
-    exbs.forEach((exb) => {
-      exbList[n] = exb;
-      n++;
-    });
-
+  BookExb.find({}, (err, exbList) => {
     res.render("fests/bookExb", { exbList: exbList });
   });
 };
@@ -38,18 +22,33 @@ exports.addBookExb = (req, res, next) => {
     endDate: req.body.endDate,
   });
 
-  newBookExb.save((err) => {
+  newBookExb.save((err, newBook) => {
     if (err) {
       console.log(err);
       return next(err);
     }
-    console.log("New book exb added");
-    return res.redirect("/bookExb");
+    User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $push: { bookExbId: newBook._id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        console.log("New book exb added.");
+        return res.redirect("/bookExb");
+      }
+    );
   });
 };
 
-exports.viewDeletePage = (req, res) => {
-  res.render("fests/deleteBookExb");
+exports.viewDeletePage = async (req, res, next) => {
+  const exb = await BookExb.findById({ _id: req.params.id });
+  if (exb) {
+    return res.render("fests/deleteBookExb", { exb: exb });
+  }
+  console.log(err);
+  return next(err);
 };
 
 exports.deleteBookExb = (req, res) => {
@@ -59,46 +58,68 @@ exports.deleteBookExb = (req, res) => {
       return next(err);
     }
     console.log("Book Exb deleted");
-    return res.redirect("/bookExb");
+    User.update(
+      { _id: req.user.id },
+      { $pull: { bookExbId: req.params.id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        return res.redirect("/profile");
+      }
+    );
   });
 };
 
 exports.viewApplicantForm = async (req, res, next) => {
   const exb = await BookExb.findById({ _id: req.params.id });
   if (exb) {
-    return res.render("fests/addApplicantBE", { exb : exb })
+    return res.render("fests/addApplicantBE", { exb: exb });
   }
-  console.log(err)
-  return next(err)
+  console.log(err);
+  return next(err);
 };
 
 exports.addApplicantBE = (req, res, next) => {
-
   let newApplicant = new Applicant({
     userId: req.user.id,
     exbId: req.params.id,
     appName: req.body.appName,
     itemName: req.body.itemName,
-    itemDesc: req.body.description
+    itemDesc: req.body.description,
   });
 
-  newApplicant.save((err) => {
+  newApplicant.save((err, newApp) => {
     if (err) {
       console.log(err);
       return next(err);
     }
-    console.log("Applicant added to Book Exb");
-    return res.redirect("/bookExb");
+    User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $push: { exbItemId: newApp._id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        console.log("Applicant added to Book Exb.");
+        return res.redirect("/bookExb");
+      }
+    );
   });
-
 };
 
 exports.viewBEById = async (req, res, next) => {
   const fair = await BookExb.findById({ _id: req.params.id });
   if (fair) {
     console.log(`Book exb view : ${fair.name}`);
-    return res.render("fests/viewBookExb", { fair: fair });
+    const items = await Applicant.find({ exbId: fair._id });
+    if (items) {
+      return res.render("fests/viewBookExb", { fair: fair, items: items });
+    }
   }
+  const err = new Error("Fair not found");
   console.log(err);
   return next(err);
 };

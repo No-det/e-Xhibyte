@@ -2,15 +2,6 @@ const User = require("../models/user.model");
 const ArtExb = require("../models/artExb.model");
 const Applicant = require("../models/applicant.model");
 
-/*exports.viewArtExb = (req, res, next) => {
-    ArtExb.find({isLive : true} ,(fairs,err) => {
-        if(err) {
-            console.log(err);
-            return next(err);
-        }
-        return res.render('fests/artExb' , {fairs:fairs});
-    })
-}*/
 exports.viewArtExb = (req, res) => {
   ArtExb.find({}, (err, exbList) => {
     res.render("fests/artExb", { exbList: exbList });
@@ -51,8 +42,13 @@ exports.addArtExb = (req, res, next) => {
   });
 };
 
-exports.viewDeletePage = (req, res) => {
-  res.render("fests/deleteArtExb");
+exports.viewDeletePage = async (req, res, next) => {
+  const exb = await ArtExb.findById({ _id: req.params.id });
+  if (exb) {
+    return res.render("fests/deleteArtExb", { exb: exb });
+  }
+  console.log(err);
+  return next(err);
 };
 
 exports.deleteArtExb = (req, res) => {
@@ -62,7 +58,17 @@ exports.deleteArtExb = (req, res) => {
       return next(err);
     }
     console.log("Art Exb deleted");
-    return res.redirect("/artExb");
+    User.update(
+      { _id: req.user.id },
+      { $pull: { artExbId: req.params.id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        return res.redirect("/profile");
+      }
+    );
   });
 };
 
@@ -84,13 +90,23 @@ exports.addApplicantAE = (req, res, next) => {
     itemDesc: req.body.description,
   });
 
-  newApplicant.save((err) => {
+  newApplicant.save((err, newApp) => {
     if (err) {
       console.log(err);
       return next(err);
     }
-    console.log("Applicant added to Art Exb");
-    return res.redirect("/artExb");
+    User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $push: { exbItemId: newApp._id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        console.log("Applicant added to Art Exb.");
+        return res.redirect("/artExb");
+      }
+    );
   });
 };
 
@@ -100,7 +116,6 @@ exports.viewAEById = async (req, res, next) => {
     console.log(`Art exb view : ${fair.name}`);
     const items = await Applicant.find({ exbId: fair._id });
     if (items) {
-      console.log(items);
       return res.render("fests/viewArtExb", { fair: fair, items: items });
     }
   }

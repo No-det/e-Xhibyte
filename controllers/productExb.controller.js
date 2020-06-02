@@ -3,14 +3,7 @@ const ProductExb = require("../models/productExb.model");
 const Applicant = require("../models/applicant.model");
 
 exports.viewProductExb = (req, res) => {
-  ProductExb.find({}, (err, exbs) => {
-    var exbList = [];
-    var n = 0;
-    exbs.forEach((exb) => {
-      exbList[n] = exb;
-      n++;
-    });
-
+  ProductExb.find({}, (err, exbList) => {
     res.render("fests/productExb", { exbList: exbList });
   });
 };
@@ -29,18 +22,33 @@ exports.addProductExb = (req, res, next) => {
     endDate: req.body.endDate,
   });
 
-  newProductExb.save((err) => {
+  newProductExb.save((err, newProduct) => {
     if (err) {
       console.log(err);
       return next(err);
     }
-    console.log("New product exb added");
-    return res.redirect("/productExb");
+    User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $push: { productExbId: newProduct._id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        console.log("New product exb added.");
+        return res.redirect("/productExb");
+      }
+    );
   });
 };
 
-exports.viewDeletePage = (req, res) => {
-  res.render("fests/deleteProductExb");
+exports.viewDeletePage = async (req, res, next) => {
+  const exb = await ProductExb.findById({ _id: req.params.id });
+  if (exb) {
+    return res.render("fests/deleteProductExb", { exb: exb });
+  }
+  console.log(err);
+  return next(err);
 };
 
 exports.deleteProductExb = (req, res) => {
@@ -50,46 +58,68 @@ exports.deleteProductExb = (req, res) => {
       return next(err);
     }
     console.log("Product Exb deleted");
-    return res.redirect("/productExb");
+    User.update(
+      { _id: req.user.id },
+      { $pull: { productExbId: req.params.id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        return res.redirect("/profile");
+      }
+    );
   });
 };
 
 exports.viewApplicantForm = async (req, res, next) => {
   const exb = await ProductExb.findById({ _id: req.params.id });
   if (exb) {
-    return res.render("fests/addApplicantPE", { exb : exb })
+    return res.render("fests/addApplicantPE", { exb: exb });
   }
-  console.log(err)
-  return next(err)
+  console.log(err);
+  return next(err);
 };
 
 exports.addApplicantPE = (req, res, next) => {
+  let newApplicant = new Applicant({
+    userId: req.user.id,
+    exbId: req.params.id,
+    appName: req.body.appName,
+    itemName: req.body.itemName,
+    itemDesc: req.body.description,
+  });
 
-    let newApplicant = new Applicant({
-      userId: req.user.id,
-      exbId: req.params.id,
-      appName: req.body.appName,
-      itemName: req.body.itemName,
-      itemDesc: req.body.description
-    });
-
-    newApplicant.save((err) => {
-      if (err) {
-        console.log(err);
-        return next(err);
+  newApplicant.save((err, newApp) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $push: { exbItemId: newApp._id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        console.log("Applicant added to Product Exb.");
+        return res.redirect("/productExb");
       }
-      console.log("Applicant added to Product Exb");
-      return res.redirect("/productExb");
-    });
-
+    );
+  });
 };
 
 exports.viewPEById = async (req, res, next) => {
   const fair = await ProductExb.findById({ _id: req.params.id });
   if (fair) {
     console.log(`Product exb view : ${fair.name}`);
-    return res.render("fests/viewProductExb", { fair: fair });
+    const items = await Applicant.find({ exbId: fair._id });
+    if (items) {
+      return res.render("fests/viewProductExb", { fair: fair, items: items });
+    }
   }
+  const err = new Error("Fair not found");
   console.log(err);
   return next(err);
 };
