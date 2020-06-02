@@ -1080,6 +1080,12 @@ input[type="password"] {
   display: flex;
   justify-content: center;
 }
+
+.error-message {
+  margin-top: 20px;
+  color: red;
+  font-weight: bold;
+}
 /*************ADMIN PAGES**************/
 
 .admin-background {

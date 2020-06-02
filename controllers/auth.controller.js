@@ -11,7 +11,7 @@ const registeringTokenGenerator = () => {
 module.exports = (server) => {
   //Log-In route
   server.get("/login", (req, res) => {
-    res.render("login");
+    res.render("login", { error: "" });
   });
   var aaro = "User";
   server.post("/login", (req, res, next) => {
@@ -23,8 +23,9 @@ module.exports = (server) => {
         return next(err);
       }
       if (!user.isActive) {
+        console.log("Invalid username or password");
         req.flash("error", "Invalid username or password");
-        return res.redirect("/login");
+        return res.render("login", { error: "Invalid username or password" });
       }
       req.logIn(user, (err) => {
         if (err) {
