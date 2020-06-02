@@ -1,7 +1,23 @@
 const User = require("../models/user.model");
+const ArtExb = require("../models/artExb.model");
+const BookExb = require("../models/bookExb.model");
+const ProductExb = require("../models/productExb.model");
 
-exports.viewProfile = (req, res) => {
-  res.render("profile", { user: req.user });
+exports.viewProfile = async (req, res) => {
+  const user = await User.findById({ _id: req.user.id });
+  if (user) {
+    console.log(user.artExbId);
+    const artExb = await ArtExb.find({ _id: { $in: user.artExbId } });
+    const bookExb = await BookExb.find({ _id: { $in: user.bookExbId } });
+    const prodExb = await ProductExb.find({ _id: { $in: user.productExbId } });
+    console.log(artExb);
+    res.render("profile", {
+      user: req.user,
+      artExb: artExb,
+      bookExb: bookExb,
+      prodExb: prodExb,
+    });
+  }
 };
 
 exports.showEditProfile = (req, res) => {

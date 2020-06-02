@@ -31,13 +31,23 @@ exports.addArtExb = (req, res, next) => {
     endDate: req.body.endDate,
   });
 
-  newArtExb.save((err) => {
+  newArtExb.save((err, newArt) => {
     if (err) {
       console.log(err);
       return next(err);
     }
-    console.log("New art exb added.");
-    return res.redirect("/artExb");
+    User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $push: { artExbId: newArt._id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        console.log("New art exb added.");
+        return res.redirect("/artExb");
+      }
+    );
   });
 };
 

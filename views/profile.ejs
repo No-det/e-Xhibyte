@@ -55,6 +55,9 @@
           </div>
           <div class="hero-detail">
             <p>Events Organised:</p>
+            <% artExb.map(art => {%>
+              <p><%= art.name %></p>
+            <% }) %>
           </div>
         </div>
         <div class="hero-button-wrapper">
