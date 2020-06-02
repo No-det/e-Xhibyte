@@ -8,7 +8,7 @@ let bookExbSchema = new Schema({
     location : { type : String },
     startDate : { type : Date },
     endDate : { type : Date },
-    imgUrl : { type : String, default : 'defaultEventPic.png' },
+    imgUrl : { type : String, default : 'defaultExbPic.png' },
     status : { type : String, default : 'Upcoming'},
     isLive : { type : Boolean, default : false },
     applicantId : [{ type : String }],
