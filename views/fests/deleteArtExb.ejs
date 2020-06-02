@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,16 +14,22 @@
   <body>
     <div class="delete-background"></div>
     <div class="delete-box">
-        <div class="delete-header">
-            <h1>Delete Art Exhibition</h1>
+      <div class="delete-header">
+        <h1>Delete Art Exhibition</h1>
+      </div>
+      <br />
+      <div class="delete-info">
+        <div>
+          <p>Are you sure that you want to delete the <%= exb.name %> ?</p>
+          <br />
         </div>
-        <br/>
-        <div class="delete-info">
-          <p>Are you sure that you want to delete the <%= exb.name %> ?</p><br/>
+        <div>
           <form action="/artExb/delete/<%= exb._id %>" method="POST">
-          <input type="submit" name="delete" value="Delete"><br/>
+            <input type="submit" name="delete" value="Delete" /><br />
           </form>
-          <div class="delete-info-can"><a href="/profile">Cancel</a><br /></div>
         </div>
+        <div class="delete-info-can"><a href="/profile">Cancel</a><br /></div>
+      </div>
     </div>
-</body>
+  </body>
+</html>
