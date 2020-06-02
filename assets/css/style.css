@@ -158,6 +158,10 @@ body {
   padding-bottom: 20px;
   text-align: center;
 }
+.login-header h3 {
+  padding-bottom: 5px;
+  text-align: center;
+}
 
 .login-info input {
   width: 92%;

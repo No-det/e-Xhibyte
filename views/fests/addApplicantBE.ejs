@@ -17,14 +17,15 @@
       style="padding-bottom: none !important; height: 750px;"
     >
       <div class="login-header">
-        <h1>Application</h1>
+        <h3>Contribute to</h3>
+        <h1><%= exb.name %></h1>
       </div>
       <br />
       <div class="signup-info">
-        <form action="/artExb/addApplicant/<%= exb._id %>" method="POST">
+        <form action="/bookExb/addApplicant/<%= exb._id %>" method="POST">
           <div class="input-container">
             <p>Name of Applicant:</p>
-            <input type="text" name="appName" placeholder="Enter your name" />
+            <input type="text" name="appName" placeholder="Enter your name" required/>
           </div>
           <div class="input-container">
             <p>Name of your Work:</p>
@@ -32,6 +33,7 @@
               type="text"
               name="itemName"
               placeholder="Enter the Name of your Work"
+              required
             />
           </div>
           <div class="input-container">
@@ -39,7 +41,8 @@
             <input
               type="text"
               name="description"
-              placeholder="Enter your location"
+              placeholder="Enter a description for your work"
+              required
             />
           </div>
           <div class="input-container">

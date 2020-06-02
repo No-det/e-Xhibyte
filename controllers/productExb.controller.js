@@ -88,7 +88,7 @@ exports.viewPEById = async (req, res, next) => {
   const fair = await ProductExb.findById({ _id: req.params.id });
   if (fair) {
     console.log(`Product exb view : ${fair.name}`);
-    return res.render("fests/productExbPage", { fair: fair });
+    return res.render("fests/viewProductExb", { fair: fair });
   }
   console.log(err);
   return next(err);
