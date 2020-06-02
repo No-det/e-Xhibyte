@@ -8,7 +8,10 @@ exports.viewProfile = async (req, res) => {
   if (user) {
     const artExb = await ArtExb.find({ _id: { $in: user.artExbId } });
     const bookExb = await BookExb.find({ _id: { $in: user.bookExbId } });
-    const productExb = await ProductExb.find({ _id: { $in: user.productExbId } });
+    const productExb = await ProductExb.find({
+      _id: { $in: user.productExbId },
+    });
+    console.log(artExb, bookExb, productExb);
     res.render("profile", {
       user: req.user,
       artExb: artExb,

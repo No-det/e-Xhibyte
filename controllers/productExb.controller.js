@@ -2,7 +2,6 @@ const User = require("../models/user.model");
 const ProductExb = require("../models/productExb.model");
 const Applicant = require("../models/applicant.model");
 
-
 exports.viewProductExb = (req, res) => {
   ProductExb.find({}, (err, exbList) => {
     res.render("fests/productExb", { exbList: exbList });
@@ -59,48 +58,56 @@ exports.deleteProductExb = (req, res) => {
       return next(err);
     }
     console.log("Product Exb deleted");
-    return res.redirect("/profile");
+    User.update(
+      { _id: req.user.id },
+      { $pull: { productExbId: req.params.id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        return res.redirect("/profile");
+      }
+    );
   });
 };
 
 exports.viewApplicantForm = async (req, res, next) => {
   const exb = await ProductExb.findById({ _id: req.params.id });
   if (exb) {
-    return res.render("fests/addApplicantPE", { exb : exb })
+    return res.render("fests/addApplicantPE", { exb: exb });
   }
-  console.log(err)
-  return next(err)
+  console.log(err);
+  return next(err);
 };
 
 exports.addApplicantPE = (req, res, next) => {
+  let newApplicant = new Applicant({
+    userId: req.user.id,
+    exbId: req.params.id,
+    appName: req.body.appName,
+    itemName: req.body.itemName,
+    itemDesc: req.body.description,
+  });
 
-    let newApplicant = new Applicant({
-      userId: req.user.id,
-      exbId: req.params.id,
-      appName: req.body.appName,
-      itemName: req.body.itemName,
-      itemDesc: req.body.description
-    });
-
-    newApplicant.save((err, newApp) => {
-      if (err) {
-        console.log(err);
-        return next(err);
-      }
-      User.findByIdAndUpdate(
-        { _id: req.user.id },
-        { $push: { exbItemId: newApp._id } },
-        (err) => {
-          if (err) {
-            console.log(err);
-            return next(err);
-          }
-          console.log("Applicant added to Product Exb.");
-          return res.redirect("/productExb");
+  newApplicant.save((err, newApp) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $push: { exbItemId: newApp._id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
         }
-      );
-    });
-
+        console.log("Applicant added to Product Exb.");
+        return res.redirect("/productExb");
+      }
+    );
+  });
 };
 
 exports.viewPEById = async (req, res, next) => {

@@ -2,7 +2,6 @@ const User = require("../models/user.model");
 const BookExb = require("../models/bookExb.model");
 const Applicant = require("../models/applicant.model");
 
-
 exports.viewBookExb = (req, res) => {
   BookExb.find({}, (err, exbList) => {
     res.render("fests/bookExb", { exbList: exbList });
@@ -59,27 +58,36 @@ exports.deleteBookExb = (req, res) => {
       return next(err);
     }
     console.log("Book Exb deleted");
-    return res.redirect("/profile");
+    User.update(
+      { _id: req.user.id },
+      { $pull: { bookExbId: req.params.id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        return res.redirect("/profile");
+      }
+    );
   });
 };
 
 exports.viewApplicantForm = async (req, res, next) => {
   const exb = await BookExb.findById({ _id: req.params.id });
   if (exb) {
-    return res.render("fests/addApplicantBE", { exb : exb })
+    return res.render("fests/addApplicantBE", { exb: exb });
   }
-  console.log(err)
-  return next(err)
+  console.log(err);
+  return next(err);
 };
 
 exports.addApplicantBE = (req, res, next) => {
-
   let newApplicant = new Applicant({
     userId: req.user.id,
     exbId: req.params.id,
     appName: req.body.appName,
     itemName: req.body.itemName,
-    itemDesc: req.body.description
+    itemDesc: req.body.description,
   });
 
   newApplicant.save((err, newApp) => {
@@ -100,7 +108,6 @@ exports.addApplicantBE = (req, res, next) => {
       }
     );
   });
-
 };
 
 exports.viewBEById = async (req, res, next) => {

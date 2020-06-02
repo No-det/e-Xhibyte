@@ -2,7 +2,6 @@ const User = require("../models/user.model");
 const ArtExb = require("../models/artExb.model");
 const Applicant = require("../models/applicant.model");
 
-
 exports.viewArtExb = (req, res) => {
   ArtExb.find({}, (err, exbList) => {
     res.render("fests/artExb", { exbList: exbList });
@@ -59,7 +58,17 @@ exports.deleteArtExb = (req, res) => {
       return next(err);
     }
     console.log("Art Exb deleted");
-    return res.redirect("/profile");
+    User.update(
+      { _id: req.user.id },
+      { $pull: { artExbId: req.params.id } },
+      (err) => {
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+        return res.redirect("/profile");
+      }
+    );
   });
 };
 
