@@ -9,7 +9,7 @@ exports.viewArtExb = (req, res) => {
 };
 
 exports.viewArtExbForm = (req, res) => {
-  res.render("fests/addArtExb");
+  res.render("fests/addArtExb", { error: "" });
 };
 
 exports.addArtExb = (req, res, next) => {
@@ -21,7 +21,26 @@ exports.addArtExb = (req, res, next) => {
     startDate: req.body.startDate,
     endDate: req.body.endDate,
   });
-
+  let date = new Date();
+  if (
+    !newArtExb.name ||
+    !newArtExb.organizer ||
+    !newArtExb.location ||
+    !newArtExb.startDate ||
+    !newArtExb.endDate
+  ) {
+    return res.render("fests/addArtExb", {
+      error: "Fields Cannot be left Empty!",
+    });
+  } else if (newArtExb.startDate < date || newArtExb.endDate < date) {
+    return res.render("fests/addArtExb", {
+      error: "The Dates cannot be of Past!",
+    });
+  } else if (newArtExb.startDate > newArtExb.endDate) {
+    return res.render("fests/addArtExb", {
+      error: "Start Date Cannot be After End Date!",
+    });
+  }
   newArtExb.save((err, newArt) => {
     if (err) {
       console.log(err);

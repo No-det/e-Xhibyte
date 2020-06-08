@@ -786,7 +786,7 @@ input[type="password"] {
 
 .hero-button-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .hero-details-edit a {
