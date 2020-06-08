@@ -18,9 +18,6 @@
       </div>
       <br />
       <div class="login-info">
-        <% if ( error != '' ) { %>
-        <div class="error-message"><strong>Error!</strong> <% error %></div>
-        <% } %>
         <form action="/login" method="POST">
           <p>Username:</p>
           <input type="text" name="username" placeholder="Enter Username" />
@@ -37,6 +34,9 @@
         </form>
         <a href="/forget">Forgot Password?</a><br />
         <a href="/register">Don't have an account?</a>
+      </div>
+      <div class="error-message">
+        <small><%= error %></small>
       </div>
     </div>
 
