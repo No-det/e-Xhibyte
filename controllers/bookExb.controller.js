@@ -9,7 +9,7 @@ exports.viewBookExb = (req, res) => {
 };
 
 exports.viewBookExbForm = (req, res) => {
-  res.render("fests/addBookExb");
+  res.render("fests/addBookExb", { error : "" });
 };
 
 exports.addBookExb = (req, res, next) => {
@@ -21,6 +21,26 @@ exports.addBookExb = (req, res, next) => {
     startDate: req.body.startDate,
     endDate: req.body.endDate,
   });
+  let date = new Date();
+  if (
+    !newBookExb.name ||
+    !newBookExb.organizer ||
+    !newBookExb.location ||
+    !newBookExb.startDate ||
+    !newBookExb.endDate
+  ) {
+    return res.render("fests/addBookExb", {
+      error: "Fields cannot be left empty!",
+    });
+  } else if (newBookExb.startDate < date || newBookExb.endDate < date) {
+    return res.render("fests/addBookExb", {
+      error: "The Dates cannot be of Past!",
+    });
+  } else if (newBookExb.startDate > newBookExb.endDate) {
+    return res.render("fests/addBookExb", {
+      error: "Start Date cannot be after End Date!",
+    });
+  }
 
   newBookExb.save((err, newBook) => {
     if (err) {

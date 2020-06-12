@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="login-background"></div>
-    <div class="signup-box">
+    <div class="signup-box" style="height: 750px;">
       <div class="login-header">
         <h1>New Book Exhibition</h1>
       </div>
@@ -53,12 +53,15 @@
           </div>
           <input type="submit" value="Add" style="width: 100%;" />
         </form>
+        <div class="error-message">
+          <small><%= error %></small>
+        </div>
       </div>
     </div>
     <script
       src="https://kit.fontawesome.com/d2a549144d.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../assets/js/app.js"></script>
+    <script src="../../assets/js/app.js"></script>
   </body>
 </html>

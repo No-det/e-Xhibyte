@@ -30,7 +30,7 @@ exports.addArtExb = (req, res, next) => {
     !newArtExb.endDate
   ) {
     return res.render("fests/addArtExb", {
-      error: "Fields Cannot be left Empty!",
+      error: "Fields cannot be left empty!",
     });
   } else if (newArtExb.startDate < date || newArtExb.endDate < date) {
     return res.render("fests/addArtExb", {
@@ -38,7 +38,7 @@ exports.addArtExb = (req, res, next) => {
     });
   } else if (newArtExb.startDate > newArtExb.endDate) {
     return res.render("fests/addArtExb", {
-      error: "Start Date Cannot be After End Date!",
+      error: "Start Date cannot be after End Date!",
     });
   }
   newArtExb.save((err, newArt) => {

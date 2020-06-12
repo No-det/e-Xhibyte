@@ -11,7 +11,6 @@ exports.viewProfile = async (req, res) => {
     const productExb = await ProductExb.find({
       _id: { $in: user.productExbId },
     });
-    console.log(artExb, bookExb, productExb);
     res.render("profile", {
       user: req.user,
       artExb: artExb,

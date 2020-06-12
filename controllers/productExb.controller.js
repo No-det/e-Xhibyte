@@ -9,7 +9,7 @@ exports.viewProductExb = (req, res) => {
 };
 
 exports.viewProductExbForm = (req, res) => {
-  res.render("fests/addProductExb");
+  res.render("fests/addProductExb", { error : "" });
 };
 
 exports.addProductExb = (req, res, next) => {
@@ -21,6 +21,26 @@ exports.addProductExb = (req, res, next) => {
     startDate: req.body.startDate,
     endDate: req.body.endDate,
   });
+  let date = new Date();
+  if (
+    !newProductExb.name ||
+    !newProductExb.organizer ||
+    !newProductExb.location ||
+    !newProductExb.startDate ||
+    !newProductExb.endDate
+  ) {
+    return res.render("fests/addProductExb", {
+      error: "Fields cannot be left empty!",
+    });
+  } else if (newProductExb.startDate < date || newProductExb.endDate < date) {
+    return res.render("fests/addProductExb", {
+      error: "The Dates cannot be of Past!",
+    });
+  } else if (newProductExb.startDate > newProductExb.endDate) {
+    return res.render("fests/addProductExb", {
+      error: "Start Date cannot be after End Date!",
+    });
+  }
 
   newProductExb.save((err, newProduct) => {
     if (err) {
