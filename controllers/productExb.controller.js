@@ -4,6 +4,44 @@ const Applicant = require("../models/applicant.model");
 
 exports.viewProductExb = (req, res) => {
   ProductExb.find({}, (err, exbList) => {
+    exbList.map(exb => {
+      if ( exb.startDate > date ) {
+        ProductExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'upcoming' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("product exb updated.");
+          }
+        );
+      }
+      if ( exb.startDate <= date ) {
+        ProductExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'live' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("product exb updated.");
+          }
+        );
+      }
+      if ( exb.endDate < date ) {
+        ProductExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'past' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("product exb updated.");
+          }
+        );
+      }
+    });
     res.render("fests/productExb", { exbList: exbList });
   });
 };

@@ -4,6 +4,44 @@ const Applicant = require("../models/applicant.model");
 
 exports.viewArtExb = (req, res) => {
   ArtExb.find({}, (err, exbList) => {
+    exbList.map(exb => {
+      if ( exb.startDate > date ) {
+        ArtExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'upcoming' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("art exb updated.");
+          }
+        );
+      }
+      if ( exb.startDate <= date ) {
+        ArtExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'live' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("art exb updated.");
+          }
+        );
+      }
+      if ( exb.endDate < date ) {
+        ArtExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'past' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("art exb updated.");
+          }
+        );
+      }
+    });
     res.render("fests/artExb", { exbList: exbList });
   });
 };

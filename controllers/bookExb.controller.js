@@ -3,7 +3,47 @@ const BookExb = require("../models/bookExb.model");
 const Applicant = require("../models/applicant.model");
 
 exports.viewBookExb = (req, res) => {
+  let date = new Date();
+  date.setDate(date.getDate() - 1);
   BookExb.find({}, (err, exbList) => {
+    exbList.map(exb => {
+      if ( exb.startDate > date ) {
+        BookExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'upcoming' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("book exb updated.");
+          }
+        );
+      }
+      if ( exb.startDate <= date ) {
+        BookExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'live' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("book exb updated.");
+          }
+        );
+      }
+      if ( exb.endDate < date ) {
+        BookExb.findByIdAndUpdate({ _id: exb.id },
+          { $push: { status: 'past' } },
+          (err) => {
+            if (err) {
+              console.log(err);
+              return next(err);
+            }
+            console.log("book exb updated.");
+          }
+        );
+      }
+    });
     res.render("fests/bookExb", { exbList: exbList });
   });
 };
