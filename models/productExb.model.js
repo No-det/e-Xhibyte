@@ -11,7 +11,6 @@ let productExbSchema = new Schema({
   imgUrl: { type: String, default: "defaultExbPic.png" },
   status: { type: String, default: "upcoming" },
   statusMessage: { type: String, default: "Upcoming Event" },
-  isLive: { type: Boolean, default: false },
   applicantId: [{ type: String }],
 });
 
