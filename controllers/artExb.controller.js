@@ -2,13 +2,13 @@ const User = require("../models/user.model");
 const ArtExb = require("../models/artExb.model");
 const Applicant = require("../models/applicant.model");
 
-exports.viewArtExb = (req, res) => {
+exports.viewArtExb = (req, res, next) => {
   ArtExb.find({}, (err, exbList) => {
     exbList.map((exb) => {
       if (exb.startDate > new Date()) {
         ArtExb.findByIdAndUpdate(
           { _id: exb.id },
-          { $push: { status: "upcoming", statusMessage: "Upcoming Event" } },
+          { status: "upcoming", statusMessage: "Upcoming Event" },
           (err) => {
             if (err) {
               console.log(err);
@@ -21,7 +21,7 @@ exports.viewArtExb = (req, res) => {
       if (exb.startDate <= new Date()) {
         ArtExb.findByIdAndUpdate(
           { _id: exb.id },
-          { $push: { status: "live", statusMessage: "Live Now" } },
+          { status: "live", statusMessage: "Live Now" },
           (err) => {
             if (err) {
               console.log(err);
@@ -34,7 +34,7 @@ exports.viewArtExb = (req, res) => {
       if (exb.endDate < new Date()) {
         ArtExb.findByIdAndUpdate(
           { _id: exb.id },
-          { $push: { status: "past", statusMessage: "Past Event" } },
+          { status: "past", statusMessage: "Past Event" },
           (err) => {
             if (err) {
               console.log(err);

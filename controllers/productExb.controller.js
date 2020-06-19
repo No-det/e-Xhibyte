@@ -4,10 +4,11 @@ const Applicant = require("../models/applicant.model");
 
 exports.viewProductExb = (req, res) => {
   ProductExb.find({}, (err, exbList) => {
-    exbList.map(exb => {
-      if ( exb.startDate > date ) {
-        ProductExb.findByIdAndUpdate({ _id: exb.id },
-          { $push: { status: 'upcoming' } },
+    exbList.map((exb) => {
+      if (exb.startDate > date) {
+        ProductExb.findByIdAndUpdate(
+          { _id: exb.id },
+          { status: "upcoming", statusMessage: "Upcoming Event" },
           (err) => {
             if (err) {
               console.log(err);
@@ -17,9 +18,10 @@ exports.viewProductExb = (req, res) => {
           }
         );
       }
-      if ( exb.startDate <= date ) {
-        ProductExb.findByIdAndUpdate({ _id: exb.id },
-          { $push: { status: 'live' } },
+      if (exb.startDate <= date) {
+        ProductExb.findByIdAndUpdate(
+          { _id: exb.id },
+          { status: "live", statusMessage: "Live Now" },
           (err) => {
             if (err) {
               console.log(err);
@@ -29,9 +31,10 @@ exports.viewProductExb = (req, res) => {
           }
         );
       }
-      if ( exb.endDate < date ) {
-        ProductExb.findByIdAndUpdate({ _id: exb.id },
-          { $push: { status: 'past' } },
+      if (exb.endDate < date) {
+        ProductExb.findByIdAndUpdate(
+          { _id: exb.id },
+          { status: "past", statusMessage: "Past Event" },
           (err) => {
             if (err) {
               console.log(err);

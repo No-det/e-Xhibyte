@@ -6,10 +6,11 @@ exports.viewBookExb = (req, res) => {
   let date = new Date();
   date.setDate(date.getDate() - 1);
   BookExb.find({}, (err, exbList) => {
-    exbList.map(exb => {
-      if ( exb.startDate > date ) {
-        BookExb.findByIdAndUpdate({ _id: exb.id },
-          { $push: { status: 'upcoming' } },
+    exbList.map((exb) => {
+      if (exb.startDate > date) {
+        BookExb.findByIdAndUpdate(
+          { _id: exb.id },
+          { status: "upcoming", statusMessage: "Upcoming Event" },
           (err) => {
             if (err) {
               console.log(err);
@@ -19,9 +20,10 @@ exports.viewBookExb = (req, res) => {
           }
         );
       }
-      if ( exb.startDate <= date ) {
-        BookExb.findByIdAndUpdate({ _id: exb.id },
-          { $push: { status: 'live' } },
+      if (exb.startDate <= date) {
+        BookExb.findByIdAndUpdate(
+          { _id: exb.id },
+          { status: "live", statusMessage: "Live Now" },
           (err) => {
             if (err) {
               console.log(err);
@@ -31,9 +33,10 @@ exports.viewBookExb = (req, res) => {
           }
         );
       }
-      if ( exb.endDate < date ) {
-        BookExb.findByIdAndUpdate({ _id: exb.id },
-          { $push: { status: 'past' } },
+      if (exb.endDate < date) {
+        BookExb.findByIdAndUpdate(
+          { _id: exb.id },
+          { status: "past", statusMessage: "Past Event" },
           (err) => {
             if (err) {
               console.log(err);
