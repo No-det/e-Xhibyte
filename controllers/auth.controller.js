@@ -35,7 +35,8 @@ module.exports = (server) => {
         }
         console.log(user.username + " logged in.");
         req.flash("success", "Good to see you again, " + user.username);
-        req.session.user = user._id;
+        sessionId = req.session;
+        sessionId.userId = user.id;
         res.redirect("/home/");
       });
     })(req, res, next);
@@ -44,7 +45,7 @@ module.exports = (server) => {
   //Log-Out route
   server.get("/logout", (req, res) => {
     req.logout();
-    console.log('user logged out.');
+    console.log("user logged out.");
     req.session.destroy();
     res.redirect("/login");
   });
