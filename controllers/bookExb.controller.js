@@ -3,52 +3,52 @@ const BookExb = require("../models/bookExb.model");
 const Applicant = require("../models/applicant.model");
 
 exports.viewBookExb = (req, res) => {
-  let date = new Date();
-  date.setDate(date.getDate() - 1);
-  BookExb.find({}, (err, exbList) => {
-    exbList.map((exb) => {
-      if (exb.startDate > new Date()) {
-        BookExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "upcoming", statusMessage: "Upcoming Event" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+  BookExb.find({})
+    .sort({ endDate: -1 })
+    .exec((err, exbList) => {
+      exbList.map((exb) => {
+        if (exb.startDate > new Date()) {
+          BookExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "upcoming", statusMessage: "Upcoming Event" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("book exb updated.");
             }
-            console.log("book exb updated.");
-          }
-        );
-      }
-      if (exb.startDate <= new Date()) {
-        BookExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "live", statusMessage: "Live Now" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+          );
+        }
+        if (exb.startDate <= new Date()) {
+          BookExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "live", statusMessage: "Live Now" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("book exb updated.");
             }
-            console.log("book exb updated.");
-          }
-        );
-      }
-      if (exb.endDate < new Date()) {
-        BookExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "past", statusMessage: "Past Event" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+          );
+        }
+        if (exb.endDate < new Date()) {
+          BookExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "past", statusMessage: "Past Event" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("book exb updated.");
             }
-            console.log("book exb updated.");
-          }
-        );
-      }
+          );
+        }
+      });
+      res.render("fests/bookExb", { exbList: exbList });
     });
-    res.render("fests/bookExb", { exbList: exbList });
-  });
 };
 
 exports.viewBookExbForm = (req, res) => {

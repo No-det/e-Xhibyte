@@ -125,6 +125,7 @@
           </div>
           <% } %>
         </div>
+<<<<<<< HEAD
         <div class="past-event hide-tab">
           <% if ( exb.status === 'past') { %>
           <div class="news-item">
@@ -162,6 +163,47 @@
                   <a href="/artExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a>
                   &nbsp;
                   <a href="/artExb/viewArtExb/<%= exb._id %>">VISIT</a>
+=======
+        <div class="news-items">
+            <% exbList.map(exb => { %>
+                <div class="news-item">
+                    <div class="item-img">
+                        <img src="../../uploads/<%= exb.imgUrl %>" alt="">
+                    </div>
+                    <div class="item-text">
+                        <div class="event-name">
+                            <h2><%= exb.name %></h2>
+                        </div>
+                        <div class="event-place">
+                            <p><%= exb.location %></p>
+                        </div>
+                        <div class="event-duration">
+                            <p><strong>From:</strong> <%= new Date(exb.startDate).toDateString() %></p>
+                            <p><strong>To:</strong> <%= new Date(exb.endDate).toDateString() %></p>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="status-url-wrapper">
+                            <div class="status">
+                                <ul class=<%= exb.status %>>
+                                    <li><%= exb.statusMessage %></li> 
+                                </ul>
+                            </div>
+                            <div class="web-url">
+                                <% if ( exb.status === 'upcoming' ) { %>
+                                    <a href="/artExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a> &nbsp;
+                                <% } %>
+                                <% if ( exb.status === 'live' ) { %>
+                                    <a href="/artExb/viewArtExb/<%= exb._id %>">VISIT</a>
+                                <% } %>
+                                <% if ( exb.status === 'past' ) { %>
+                                    <a href="#" onclick=disabled()>VISIT</a>
+                                <% } %>
+                            </div>
+                        </div>                   
+                    </div>
+>>>>>>> 1125a18deebd9d71a8fb361e13ea4140c7fa400f
                 </div>
               </div>
             </div>

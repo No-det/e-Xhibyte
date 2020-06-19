@@ -2,51 +2,53 @@ const User = require("../models/user.model");
 const ProductExb = require("../models/productExb.model");
 const Applicant = require("../models/applicant.model");
 
-exports.viewProductExb = (req, res, next) => {
-  ProductExb.find({}, (err, exbList) => {
-    exbList.map((exb) => {
-      if (exb.startDate > new Date()) {
-        ProductExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "upcoming", statusMessage: "Upcoming Event" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+exports.viewProductExb = (req, res) => {
+  ProductExb.find({})
+    .sort({ endDate: -1 })
+    .exec((err, exbList) => {
+      exbList.map((exb) => {
+        if (exb.startDate > new Date()) {
+          ProductExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "upcoming", statusMessage: "Upcoming Event" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("product exb updated.");
             }
-            console.log("product exb updated.");
-          }
-        );
-      }
-      if (exb.startDate <= new Date()) {
-        ProductExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "live", statusMessage: "Live Now" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+          );
+        }
+        if (exb.startDate <= new Date()) {
+          ProductExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "live", statusMessage: "Live Now" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("product exb updated.");
             }
-            console.log("product exb updated.");
-          }
-        );
-      }
-      if (exb.endDate < new Date()) {
-        ProductExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "past", statusMessage: "Past Event" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+          );
+        }
+        if (exb.endDate < new Date()) {
+          ProductExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "past", statusMessage: "Past Event" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("product exb updated.");
             }
-            console.log("product exb updated.");
-          }
-        );
-      }
+          );
+        }
+      });
+      res.render("fests/productExb", { exbList: exbList });
     });
-    res.render("fests/productExb", { exbList: exbList });
-  });
 };
 
 exports.viewProductExbForm = (req, res) => {

@@ -56,8 +56,15 @@
                             </ul>
                         </div>
                         <div class="web-url">
-                            <a href="/bookExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a> &nbsp;
-                            <a href="/bookExb/viewBookExb/<%= exb._id %>">VISIT</a>
+                            <% if ( exb.status === 'upcoming' ) { %>
+                                <a href="/bookExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a> &nbsp;
+                            <% } %>
+                            <% if ( exb.status === 'live' ) { %>
+                                <a href="/bookExb/viewBooExb/<%= exb._id %>">VISIT</a>
+                            <% } %>
+                            <% if ( exb.status === 'past' ) { %>
+                                <a href="#" onclick=disabled()>VISIT</a>
+                            <% } %>
                         </div>
                     </div>                   
                 </div>

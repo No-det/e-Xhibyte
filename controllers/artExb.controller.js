@@ -3,50 +3,52 @@ const ArtExb = require("../models/artExb.model");
 const Applicant = require("../models/applicant.model");
 
 exports.viewArtExb = (req, res, next) => {
-  ArtExb.find({}, (err, exbList) => {
-    exbList.map((exb) => {
-      if (exb.startDate > new Date()) {
-        ArtExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "upcoming", statusMessage: "Upcoming Event" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+  ArtExb.find({})
+    .sort({ endDate: -1 })
+    .exec((err, exbList) => {
+      exbList.map((exb) => {
+        if (exb.startDate > new Date()) {
+          ArtExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "upcoming", statusMessage: "Upcoming Event" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("art exb updated.");
             }
-            console.log("art exb updated.");
-          }
-        );
-      }
-      if (exb.startDate <= new Date()) {
-        ArtExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "live", statusMessage: "Live Now" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+          );
+        }
+        if (exb.startDate <= new Date()) {
+          ArtExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "live", statusMessage: "Live Now" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("art exb updated.");
             }
-            console.log("art exb updated.");
-          }
-        );
-      }
-      if (exb.endDate < new Date()) {
-        ArtExb.findByIdAndUpdate(
-          { _id: exb.id },
-          { status: "past", statusMessage: "Past Event" },
-          (err) => {
-            if (err) {
-              console.log(err);
-              return next(err);
+          );
+        }
+        if (exb.endDate < new Date()) {
+          ArtExb.findByIdAndUpdate(
+            { _id: exb.id },
+            { status: "past", statusMessage: "Past Event" },
+            (err) => {
+              if (err) {
+                console.log(err);
+                return next(err);
+              }
+              console.log("art exb updated.");
             }
-            console.log("art exb updated.");
-          }
-        );
-      }
+          );
+        }
+      });
+      res.render("fests/artExb", { exbList: exbList });
     });
-    res.render("fests/artExb", { exbList: exbList });
-  });
 };
 
 exports.viewArtExbForm = (req, res) => {
