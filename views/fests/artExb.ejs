@@ -51,20 +51,9 @@
                         <br/>
                         <div class="status-url-wrapper">
                             <div class="status">
-                                <% let tDate = new Date().toDateString();
-                                    if( new Date(exb.startDate).toDateString() < tDate && new Date(exb.endDate).toDateString() < tDate ) { %>
-                                <ul class="past">
-                                    <li>Past Event</li> 
+                                <ul class=<%= exb.status %>>
+                                    <li><%= exb.statusMessage %></li> 
                                 </ul>
-                                <% } else if ( (new Date(exb.startDate).toDateString() < tDate || new Date(exb.startDate).toDateString() > tDate) && new Date(exb.endDate).toDateString() > tDate ) { %>
-                                    <ul class="live">
-                                        <li>Live Now</li> 
-                                    </ul>
-                                <% } else { %>
-                                    <ul class="upcoming">
-                                        <li>Upcoming Event</li> 
-                                    </ul>
-                                <% } %>
                             </div>
                             <div class="web-url">
                                 <a href="/artExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a> &nbsp;
