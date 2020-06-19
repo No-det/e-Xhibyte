@@ -22,6 +22,7 @@ exports.addArtExb = (req, res, next) => {
     endDate: req.body.endDate,
   });
   let date = new Date();
+  date.setDate(date.getDate() - 1);
   if (
     !newArtExb.name ||
     !newArtExb.organizer ||

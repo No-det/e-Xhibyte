@@ -9,7 +9,7 @@ exports.viewProductExb = (req, res) => {
 };
 
 exports.viewProductExbForm = (req, res) => {
-  res.render("fests/addProductExb", { error : "" });
+  res.render("fests/addProductExb", { error: "" });
 };
 
 exports.addProductExb = (req, res, next) => {
@@ -22,6 +22,7 @@ exports.addProductExb = (req, res, next) => {
     endDate: req.body.endDate,
   });
   let date = new Date();
+  date.setDate(date.getDate() - 1);
   if (
     !newProductExb.name ||
     !newProductExb.organizer ||

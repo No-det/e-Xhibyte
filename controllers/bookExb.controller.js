@@ -9,7 +9,7 @@ exports.viewBookExb = (req, res) => {
 };
 
 exports.viewBookExbForm = (req, res) => {
-  res.render("fests/addBookExb", { error : "" });
+  res.render("fests/addBookExb", { error: "" });
 };
 
 exports.addBookExb = (req, res, next) => {
@@ -22,6 +22,7 @@ exports.addBookExb = (req, res, next) => {
     endDate: req.body.endDate,
   });
   let date = new Date();
+  date.setDate(date.getDate() - 1);
   if (
     !newBookExb.name ||
     !newBookExb.organizer ||
