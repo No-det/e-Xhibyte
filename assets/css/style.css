@@ -1147,3 +1147,15 @@ input[type="password"] {
   border: 2px solid rgb(248, 87, 235);
   background-color: white;
 }
+
+.hide-tab {
+  display: none;
+}
+.events-status-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.events-status-nav h3 {
+  cursor: pointer;
+}

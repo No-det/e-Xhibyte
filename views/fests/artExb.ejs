@@ -1,83 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins|Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <title>e-Xhibyte | Art Exhibitions</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="nav-bar">
-        <div class="logo">
-            <a href="/"><h1>e-Xhibyte</h1></a>
-            <h6><i>Host your dream from your device.</i></h6>
-        </div>
-        <div class="nav">
-            <a href="/artExb/add">New Art Exhibition</a>
-            <span>|</span>
-            <a href="/profile">Profile</a>
-            <span>|</span>   
-            <a href="/home">Home</a>
-        </div>
+      <div class="logo">
+        <a href="/"><h1>e-Xhibyte</h1></a>
+        <h6><i>Host your dream from your device.</i></h6>
+      </div>
+      <div class="nav">
+        <a href="/artExb/add">New Art Exhibition</a>
+        <span>|</span>
+        <a href="/profile">Profile</a>
+        <span>|</span>
+        <a href="/home">Home</a>
+      </div>
     </div>
 
     <div class="content-news">
-        <h1>News Feed</h1>
-        <div class="news-section-header">
-            <div class="exhibition-section active">
-                <h3><a href="/artExb">Art Exhibitons</a></h3>
-            </div>
+      <h1>News Feed</h1>
+      <div class="news-section-header">
+        <div class="exhibition-section active">
+          <h3><a href="/artExb">Art Exhibitons</a></h3>
         </div>
-        <div class="news-items">
-            <% exbList.map(exb => { %>
-                <div class="news-item">
-                    <div class="item-img">
-                        <img src="../../uploads/<%= exb.imgUrl %>" alt="">
-                    </div>
-                    <div class="item-text">
-                        <div class="event-name">
-                            <h2><%= exb.name %></h2>
-                        </div>
-                        <div class="event-place">
-                            <p><%= exb.location %></p>
-                        </div>
-                        <div class="event-duration">
-                            <p><strong>From:</strong> <%= new Date(exb.startDate).toDateString() %></p>
-                            <p><strong>To:</strong> <%= new Date(exb.endDate).toDateString() %></p>
-                        </div>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <div class="status-url-wrapper">
-                            <div class="status">
-                                <ul class=<%= exb.status %>>
-                                    <li><%= exb.statusMessage %></li> 
-                                </ul>
-                            </div>
-                            <div class="web-url">
-                                <a href="/artExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a> &nbsp;
-                                <a href="/artExb/viewArtExb/<%= exb._id %>">VISIT</a>
-                            </div>
-                        </div>                   
-                    </div>
+      </div>
+      <div class="news-items">
+        <div class="events-status-nav">
+          <h3 onclick="liveActive()">Live</h3>
+          <h3 onclick="upcomingActive()">Upcoming</h3>
+          <h3 onclick="pastActive()">Past</h3>
+        </div>
+        <% exbList.map(exb => { %>
+        <div class="live-event">
+          <% if ( exb.status === 'live') { %>
+          <div class="news-item">
+            <div class="item-img">
+              <img src="../../uploads/<%= exb.imgUrl %>" alt="" />
+            </div>
+            <div class="item-text">
+              <div class="event-name">
+                <h2><%= exb.name %></h2>
+              </div>
+              <div class="event-place">
+                <p><%= exb.location %></p>
+              </div>
+              <div class="event-duration">
+                <p>
+                  <strong>From:</strong> <%= new
+                  Date(exb.startDate).toDateString() %>
+                </p>
+                <p>
+                  <strong>To:</strong> <%= new Date(exb.endDate).toDateString()
+                  %>
+                </p>
+              </div>
+              <br />
+              <br />
+              <br />
+              <div class="status-url-wrapper">
+                <div class="status">
+                  <ul class=<%= exb.status %>
+                    >
+                    <li><%= exb.statusMessage %></li>
+                  </ul>
                 </div>
-            <% }) %>
+                <div class="web-url">
+                  <a href="/artExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a>
+                  &nbsp;
+                  <a href="/artExb/viewArtExb/<%= exb._id %>">VISIT</a>
+                </div>
+              </div>
             </div>
+          </div>
+          <% } %>
         </div>
-    </div>
-    
-    
+        <div class="upcoming-event hide-tab">
+          <% if ( exb.status === 'upcoming') { %>
+          <div class="news-item">
+            <div class="item-img">
+              <img src="../../uploads/<%= exb.imgUrl %>" alt="" />
+            </div>
+            <div class="item-text">
+              <div class="event-name">
+                <h2><%= exb.name %></h2>
+              </div>
+              <div class="event-place">
+                <p><%= exb.location %></p>
+              </div>
+              <div class="event-duration">
+                <p>
+                  <strong>From:</strong> <%= new
+                  Date(exb.startDate).toDateString() %>
+                </p>
+                <p>
+                  <strong>To:</strong> <%= new Date(exb.endDate).toDateString()
+                  %>
+                </p>
+              </div>
+              <br />
+              <br />
+              <br />
+              <div class="status-url-wrapper">
+                <div class="status">
+                    <ul class=<%= exb.status %>
+                        >
+                    <li><%= exb.statusMessage %></li>
+                  </ul>
+                </div>
+                <div class="web-url">
+                  <a href="/artExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a>
+                  &nbsp;
+                  <a href="/artExb/viewArtExb/<%= exb._id %>">VISIT</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+        <div class="past-event hide-tab">
+          <% if ( exb.status === 'past') { %>
+          <div class="news-item">
+            <div class="item-img">
+              <img src="../../uploads/<%= exb.imgUrl %>" alt="" />
+            </div>
+            <div class="item-text">
+              <div class="event-name">
+                <h2><%= exb.name %></h2>
+              </div>
+              <div class="event-place">
+                <p><%= exb.location %></p>
+              </div>
+              <div class="event-duration">
+                <p>
+                  <strong>From:</strong> <%= new
+                  Date(exb.startDate).toDateString() %>
+                </p>
+                <p>
+                  <strong>To:</strong> <%= new Date(exb.endDate).toDateString()
+                  %>
+                </p>
+              </div>
+              <br />
+              <br />
+              <br />
+              <div class="status-url-wrapper">
+                <div class="status">
+                    <ul class=<%= exb.status %>
+                        >
+                    <li><%= exb.statusMessage %></li>
+                  </ul>
+                </div>
+                <div class="web-url">
+                  <a href="/artExb/addApplicant/<%= exb._id %>">CONTRIBUTE</a>
+                  &nbsp;
+                  <a href="/artExb/viewArtExb/<%= exb._id %>">VISIT</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+        <% }) %>
+      </div>
     </div>
     <div class="footer">
-        <p id="copyright">Copyright &copy; 2020 | Anoroc</p>
+      <p id="copyright">Copyright &copy; 2020 | Anoroc</p>
     </div>
-</body>
-
-<script>
+  </body>
+  <script src="../../assets/js/app.js"></script>
+  <script>
     function disabled() {
-        var message = "The Exhibition You wish to Visit is Over!";
-        alert(message);
+      var message = "The Exhibition You wish to Visit is Over!";
+      alert(message);
     }
-</script>
+  </script>
 </html>

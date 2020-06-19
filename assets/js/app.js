@@ -74,3 +74,22 @@ function currentPass() {
     document.querySelector("#ic6").classList.add("fa-eye-slash");
   }
 }
+
+function liveActive() {
+  console.log("Inside liveActive() function");
+    document.querySelector(".live-event").classList.remove("hide-tab");
+    document.querySelector(".upcoming-event").classList.add("hide-tab");
+    document.querySelector(".past-event").classList.add("hide-tab");
+}
+function upcomingActive() {
+  console.log("Inside upcomingActive() function");
+    document.querySelector(".live-event").classList.add("hide-tab");
+    document.querySelector(".upcoming-event").classList.remove("hide-tab");
+    document.querySelector(".past-event").classList.add("hide-tab");
+}
+function pastActive() {
+  console.log("Inside pastActive() function");
+    document.querySelector(".live-event").classList.add("hide-tab");
+    document.querySelector(".upcoming-event").classList.add("hide-tab");
+    document.querySelector(".past-event").classList.remove("hide-tab");
+}
