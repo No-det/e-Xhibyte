@@ -2,10 +2,10 @@ const User = require("../models/user.model");
 const ProductExb = require("../models/productExb.model");
 const Applicant = require("../models/applicant.model");
 
-exports.viewProductExb = (req, res) => {
+exports.viewProductExb = (req, res, next) => {
   ProductExb.find({}, (err, exbList) => {
     exbList.map((exb) => {
-      if (exb.startDate > date) {
+      if (exb.startDate > new Date()) {
         ProductExb.findByIdAndUpdate(
           { _id: exb.id },
           { status: "upcoming", statusMessage: "Upcoming Event" },
@@ -18,7 +18,7 @@ exports.viewProductExb = (req, res) => {
           }
         );
       }
-      if (exb.startDate <= date) {
+      if (exb.startDate <= new Date()) {
         ProductExb.findByIdAndUpdate(
           { _id: exb.id },
           { status: "live", statusMessage: "Live Now" },
@@ -31,7 +31,7 @@ exports.viewProductExb = (req, res) => {
           }
         );
       }
-      if (exb.endDate < date) {
+      if (exb.endDate < new Date()) {
         ProductExb.findByIdAndUpdate(
           { _id: exb.id },
           { status: "past", statusMessage: "Past Event" },
