@@ -2,9 +2,7 @@ const User = require("../models/user.model");
 const BookExb = require("../models/bookExb.model");
 const Applicant = require("../models/applicant.model");
 
-exports.viewBookExb = (req, res) => {
-  let date = new Date();
-  date.setDate(date.getDate() - 1);
+exports.viewBookExb = (req, res, next) => {
   BookExb.find({}, (err, exbList) => {
     exbList.map((exb) => {
       if (exb.startDate > new Date()) {
