@@ -14,6 +14,8 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const uuid = require("uuid/v4");
+const compression = require('compression')
+const helmet = require('helmet')
 
 const User = require("./models/user.model");
 
@@ -52,6 +54,8 @@ server.use(passport.initialize());
 server.use(passport.session());
 server.use(cookieParser());
 server.use(flash());
+server.use(compression()); //Compress all routes
+server.use(helmet()); //Use Helmet to protect against well known vulnerabilities
 
 //Setting up Passport
 passport.use(new LocalStrategy(User.authenticate()));
