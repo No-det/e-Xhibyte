@@ -88,8 +88,8 @@ server.get("/", (req, res) => {
   return res.render("index");
 });
 
-server.get("/info", (req, res) => {
-  res.render("info");
+server.get("/about", (req, res) => {
+  res.render("about");
 });
 
 server.get("/home", middleWares.isLoggedIn, (req, res) => {
