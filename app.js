@@ -14,8 +14,8 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const uuid = require("uuid/v4");
-const compression = require('compression')
-const helmet = require('helmet')
+const compression = require("compression");
+const helmet = require("helmet");
 
 const User = require("./models/user.model");
 
