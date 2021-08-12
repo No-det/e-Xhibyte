@@ -96,7 +96,7 @@ server.get("/home", middleWares.isLoggedIn, (req, res) => {
   res.render("home", { user: req.user });
 });
 
-// @Ajal, add func to remove dp.
+// @Ajal333, add func to remove dp.
 //Uploading profile Image
 //Path to save files
 const upload = multer({ dest: __dirname + "/uploads/" });
